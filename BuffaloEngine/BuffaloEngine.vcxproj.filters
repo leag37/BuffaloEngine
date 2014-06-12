@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{79fd7c57-0a48-4478-96aa-d391b0b84d41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO">
+      <UniqueIdentifier>{0db88c1b-34de-4e2a-a707-8be7a6230672}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{1ac4f8ab-dd4f-4d8e-b540-a2ac7f04c602}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{6c53215c-ee97-4829-a3fe-1606291f557c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data Structures">
+      <UniqueIdentifier>{84e6ed8d-9a3c-4cd8-b180-f8e90e29e3ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{857ea25d-ad70-4ab2-a9b3-581053cfaf19}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Include\Core\BuffApplication.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\BuffPrerequisites.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\BuffAllocatedClass.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\BuffBaseAllocator.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\BuffMemory.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\Core\BuffApplication.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Include\Core\BuffAllocatedClass.inl">
+      <Filter>Core</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,16 @@
+# Visual Studio
+*.opensdf
+*.sdf
+*.suo
+ipch/*
+
+# Build
+Debug/*
+Release/*
+
+BuffaloApp/Debug/*
+BuffaloApp/Release/*
+BuffaloEngine/Debug/*
+BuffaloEngine/Release/*
+BuffaloMeshUtility/Debug/*
+BuffaloMeshUtility/Release/*
