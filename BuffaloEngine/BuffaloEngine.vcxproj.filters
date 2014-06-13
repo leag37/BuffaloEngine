@@ -40,14 +40,38 @@
     <ClInclude Include="Include\Core\BuffMemory.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Core\BuffSingleton.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffRenderManager.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\BuffJobManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\BuffJob.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Core\BuffApplication.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffRenderManager.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\BuffJob.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\BuffJobManager.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Include\Core\BuffAllocatedClass.inl">
+      <Filter>Core</Filter>
+    </None>
+    <None Include="Include\Core\BuffSingleton.inl">
       <Filter>Core</Filter>
     </None>
   </ItemGroup>

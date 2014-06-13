@@ -16,7 +16,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -64,14 +64,22 @@
     <ClInclude Include="Include\Core\BuffAllocatedClass.h" />
     <ClInclude Include="Include\Core\BuffApplication.h" />
     <ClInclude Include="Include\Core\BuffBaseAllocator.h" />
+    <ClInclude Include="Include\Core\BuffJob.h" />
+    <ClInclude Include="Include\Core\BuffJobManager.h" />
     <ClInclude Include="Include\Core\BuffMemory.h" />
     <ClInclude Include="Include\Core\BuffPrerequisites.h" />
+    <ClInclude Include="Include\Core\BuffSingleton.h" />
+    <ClInclude Include="Include\Rendering\BuffRenderManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Core\BuffApplication.cpp" />
+    <ClCompile Include="Src\Core\BuffJob.cpp" />
+    <ClCompile Include="Src\Core\BuffJobManager.cpp" />
+    <ClCompile Include="Src\Rendering\BuffRenderManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Include\Core\BuffAllocatedClass.inl" />
+    <None Include="Include\Core\BuffSingleton.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

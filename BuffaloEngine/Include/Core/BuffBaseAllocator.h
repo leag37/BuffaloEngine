@@ -13,7 +13,7 @@ namespace BuffaloEngine
 	* Base allocator for objects to use
 	*/
 	// TODO: Add singleton support
-	class BUFFEXPORT BaseAllocator
+	class BaseAllocator
 	{
 	public:
 		/**

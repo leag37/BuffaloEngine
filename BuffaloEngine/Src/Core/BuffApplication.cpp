@@ -6,6 +6,7 @@ namespace BuffaloEngine
 	* Default constructor
 	*/
 	Application::Application()
+		:	_renderManager(0)
 	{
 	}
 
@@ -32,6 +33,11 @@ namespace BuffaloEngine
 	*/
 	bool Application::Initialize()
 	{
+
+
+		// Initialize the job system
+		_renderManager = new RenderManager();
+
 		return true;
 	}
 

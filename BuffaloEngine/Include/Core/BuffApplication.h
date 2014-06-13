@@ -4,6 +4,8 @@
 #define __BUFFAPPLICATION_H__
 
 #include "Core\BuffPrerequisites.h"
+#include "Core\BuffJobManager.h"
+#include "Rendering\BuffRenderManager.h"
 
 namespace BuffaloEngine
 {
@@ -14,7 +16,7 @@ namespace BuffaloEngine
 	/**
 	* The base for building applications. This class acts as the root for engine functionality.
 	*/
-	class BUFFEXPORT Application : public SimpleAlloc
+	class Application : public SimpleAlloc
 	{
 	public:
 		/**
@@ -64,8 +66,20 @@ namespace BuffaloEngine
 
 	protected:
 		/**
+		* Job manager
+		*/
+		JobManager* _jobManager;
+		
+		/**
+		* Render manager
+		*/
+		RenderManager* _renderManager;
+		
+		/**
 		* Scene manager
 		*/
+
+
 
 	};
 

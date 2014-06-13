@@ -13,7 +13,6 @@
 //**********************
 // Platform definitions
 //**********************
-#define BUFFEXPORT __declspec(dllexport)
 
 // BuffaloEngine includes
 #include "BuffMemory.h"
