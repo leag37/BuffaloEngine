@@ -52,6 +52,15 @@
     <ClInclude Include="Include\Core\BuffJob.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Core\BuffWindowsEventHandler.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffRenderWindow.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffRenderSystem.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Core\BuffApplication.cpp">
@@ -65,6 +74,9 @@
     </ClCompile>
     <ClCompile Include="Src\Core\BuffJobManager.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffRenderWindow.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

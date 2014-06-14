@@ -8,6 +8,9 @@
 
 namespace BuffaloEngine
 {
+	// Forward declarations
+	class RenderWindow;
+
 	/**	\addtogroup Rendering
 	*	@{
 	*/
@@ -29,6 +32,18 @@ namespace BuffaloEngine
 		~RenderManager();
 
 		/**
+		* Initialize the rendering manager
+		* @return
+		*	bool Return true if the initialization succeeded
+		*/
+		bool Initialize();
+
+		/**
+		* Shut down the rendering manager
+		*/
+		void Shutdown();
+
+		/**
 		* Get the singleton instance
 		* @return
 		*	RenderManager& The instance
@@ -42,8 +57,53 @@ namespace BuffaloEngine
 		*/
 		static RenderManager* GetSingletonPtr();
 
-	private:
+		/**
+		* Update the manager
+		* @return
+		*	bool Return true if the update is successful
+		*/
+		bool Update();
 
+	private:
+		/**
+		* Render system. This owns the low-level rendering devices
+		*/
+		//RenderSystem* _renderSystem;
+
+		/**
+		* The rendering window
+		*/
+		RenderWindow* _renderWindow;
+
+		/**
+		* The target render viewport
+		*/
+		//RenderViewport* _renderViewport;
+
+		/**
+		* Scene manager
+		*/
+		//SceneManager* _sceneManager;
+
+		/**
+		* Texture manager
+		*/
+		//TextureManager* _textureManager;
+
+		/**
+		* Hardware buffer manager
+		*/
+		//HardwareBufferManager* _hardwareBufferManager;
+
+		/**
+		* Mesh manager
+		*/
+		//MeshManager* _meshManager;
+
+		/**
+		* Shader manager
+		*/
+		//ShaderManager* _shaderManager;
 	};
 
 	/** @} */

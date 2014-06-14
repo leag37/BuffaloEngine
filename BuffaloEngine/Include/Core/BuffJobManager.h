@@ -41,7 +41,7 @@ namespace BuffaloEngine
 		bool Initialize();
 
 		/**
-		* Shut down the application
+		* Shut down the job manager
 		*/
 		void Shutdown();
 

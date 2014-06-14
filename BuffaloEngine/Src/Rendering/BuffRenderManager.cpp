@@ -1,6 +1,7 @@
 // Filename: BuffRenderManager.cpp
 // Author: Gael Huber
 #include "Rendering\BuffRenderManager.h"
+#include "Rendering\BuffRenderWindow.h"
 
 namespace BuffaloEngine
 {
@@ -8,7 +9,8 @@ namespace BuffaloEngine
 	* Default constructor
 	*/
 	RenderManager::RenderManager()
-		:	Singleton()
+		:	Singleton(),
+			_renderWindow(0)
 	{
 	}
 
@@ -17,6 +19,32 @@ namespace BuffaloEngine
 	*/
 	RenderManager::~RenderManager()
 	{
+	}
+
+	/**
+	* Initialize the rendering manager
+	* @return
+	*	bool Return true if the initialization succeeded
+	*/
+	bool RenderManager::Initialize()
+	{
+		// Initialize the render window
+		_renderWindow = new RenderWindow();
+		_renderWindow->Initialize(800, 600);
+
+		return true;
+	}
+
+	/**
+	* Shut down the rendering manager
+	*/
+	void RenderManager::Shutdown()
+	{
+		if(_renderWindow != 0)
+		{
+			_renderWindow->Shutdown();
+			delete _renderWindow;
+		}
 	}
 
 	/**
@@ -37,5 +65,15 @@ namespace BuffaloEngine
 	RenderManager* RenderManager::GetSingletonPtr()
 	{
 		return _instance;
+	}
+
+	/**
+	* Update the manager
+	* @return
+	*	bool Return true if the update is successful
+	*/
+	bool RenderManager::Update()
+	{
+		return true;
 	}
 }

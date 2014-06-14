@@ -75,12 +75,7 @@ namespace BuffaloEngine
 		*/
 		RenderManager* _renderManager;
 		
-		/**
-		* Scene manager
-		*/
-
-
-
+		
 	};
 
 	/** @} */

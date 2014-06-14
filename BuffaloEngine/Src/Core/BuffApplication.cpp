@@ -6,7 +6,8 @@ namespace BuffaloEngine
 	* Default constructor
 	*/
 	Application::Application()
-		:	_renderManager(0)
+		:	_jobManager(0),
+			_renderManager(0)
 	{
 	}
 
@@ -33,10 +34,19 @@ namespace BuffaloEngine
 	*/
 	bool Application::Initialize()
 	{
-
-
 		// Initialize the job system
+		_jobManager = new JobManager();
+		if(_jobManager->Initialize() == false)
+		{
+			return false;
+		}
+
+		// Initialize hte rendering subsystem
 		_renderManager = new RenderManager();
+		if(_renderManager->Initialize() == false)
+		{
+			return false;
+		}
 
 		return true;
 	}
@@ -61,8 +71,25 @@ namespace BuffaloEngine
 			return false;
 		}
 
-		// Loop
-		// TODO
+		// Main loop
+		MSG msg;
+		bool canRun = true;
+
+		while(canRun)
+		{
+			// Windows message pump
+			while(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+			{
+				// Translate the message
+				TranslateMessage(&msg);
+				
+				// Dispatch the message for processing
+				DispatchMessage(&msg);
+			}
+
+			// Update rendering
+			_renderManager->Update();
+		}
 
 		// Shutdown the system
 		Shutdown();
