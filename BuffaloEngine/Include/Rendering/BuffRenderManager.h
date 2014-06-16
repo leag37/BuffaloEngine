@@ -9,6 +9,7 @@
 namespace BuffaloEngine
 {
 	// Forward declarations
+	class RenderSystem;
 	class RenderWindow;
 
 	/**	\addtogroup Rendering
@@ -64,11 +65,18 @@ namespace BuffaloEngine
 		*/
 		bool Update();
 
+		/**
+		* Get the window
+		* @return
+		*	const RenderWindow* The render window to fetch
+		*/
+		const RenderWindow* GetRenderWindow() const;
+
 	private:
 		/**
 		* Render system. This owns the low-level rendering devices
 		*/
-		//RenderSystem* _renderSystem;
+		RenderSystem* _renderSystem;
 
 		/**
 		* The rendering window

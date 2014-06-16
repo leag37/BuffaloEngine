@@ -78,7 +78,7 @@ namespace BuffaloEngine
 		while(canRun)
 		{
 			// Windows message pump
-			while(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+			if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 			{
 				// Translate the message
 				TranslateMessage(&msg);
@@ -87,8 +87,17 @@ namespace BuffaloEngine
 				DispatchMessage(&msg);
 			}
 
+			// If Windows signals to exit the application, quit
+			if(msg.message == WM_QUIT)
+			{
+				canRun = false;
+			}
+
 			// Update rendering
-			_renderManager->Update();
+			if(_renderManager->Update() == false)
+			{
+				canRun = false;
+			}
 		}
 
 		// Shutdown the system

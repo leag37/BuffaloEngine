@@ -61,13 +61,19 @@
     <ClInclude Include="Include\Rendering\BuffRenderSystem.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffRenderDevice.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffRenderDriver.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffRenderDeviceDriver.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Core\BuffApplication.cpp">
       <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Rendering\BuffRenderManager.cpp">
-      <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Src\Core\BuffJob.cpp">
       <Filter>Core</Filter>
@@ -76,6 +82,18 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Src\Rendering\BuffRenderWindow.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffRenderSystem.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffRenderManager.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffRenderDeviceDriver.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffRenderDevice.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
   </ItemGroup>

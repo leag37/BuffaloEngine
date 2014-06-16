@@ -94,6 +94,16 @@ namespace BuffaloEngine
 	}
 
 	/**
+	* Get the window handle
+	* @return
+	*	HWND The window handle
+	*/
+	HWND RenderWindow::GetHWND() const
+	{
+		return _hWnd;
+	}
+
+	/**
 	* Window Process
 	*/
 	LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)

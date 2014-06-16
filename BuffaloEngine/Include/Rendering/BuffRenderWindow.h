@@ -43,6 +43,13 @@ namespace BuffaloEngine
 		*/
 		void Shutdown();
 
+		/**
+		* Get the window handle
+		* @return
+		*	HWND The window handle
+		*/
+		HWND GetHWND() const;
+
 	private:
 		/**
 		* The window width

@@ -70,6 +70,9 @@
     <ClInclude Include="Include\Core\BuffPrerequisites.h" />
     <ClInclude Include="Include\Core\BuffSingleton.h" />
     <ClInclude Include="Include\Core\BuffWindowsEventHandler.h" />
+    <ClInclude Include="Include\Rendering\BuffRenderDevice.h" />
+    <ClInclude Include="Include\Rendering\BuffRenderDeviceDriver.h" />
+    <ClInclude Include="Include\Rendering\BuffRenderDriver.h" />
     <ClInclude Include="Include\Rendering\BuffRenderManager.h" />
     <ClInclude Include="Include\Rendering\BuffRenderSystem.h" />
     <ClInclude Include="Include\Rendering\BuffRenderWindow.h" />
@@ -78,7 +81,10 @@
     <ClCompile Include="Src\Core\BuffApplication.cpp" />
     <ClCompile Include="Src\Core\BuffJob.cpp" />
     <ClCompile Include="Src\Core\BuffJobManager.cpp" />
+    <ClCompile Include="Src\Rendering\BuffRenderDevice.cpp" />
+    <ClCompile Include="Src\Rendering\BuffRenderDeviceDriver.cpp" />
     <ClCompile Include="Src\Rendering\BuffRenderManager.cpp" />
+    <ClCompile Include="Src\Rendering\BuffRenderSystem.cpp" />
     <ClCompile Include="Src\Rendering\BuffRenderWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
