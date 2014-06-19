@@ -70,6 +70,7 @@
     <ClInclude Include="Include\Core\BuffJobManager.h" />
     <ClInclude Include="Include\Core\BuffMemory.h" />
     <ClInclude Include="Include\Core\BuffPrerequisites.h" />
+    <ClInclude Include="Include\Core\BuffSharedPtr.h" />
     <ClInclude Include="Include\Core\BuffSingleton.h" />
     <ClInclude Include="Include\Core\BuffWindowsEventHandler.h" />
     <ClInclude Include="Include\Rendering\BuffRenderDevice.h" />
@@ -91,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Include\Core\BuffAllocatedClass.inl" />
+    <None Include="Include\Core\BuffSharedPtr.inl" />
     <None Include="Include\Core\BuffSingleton.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

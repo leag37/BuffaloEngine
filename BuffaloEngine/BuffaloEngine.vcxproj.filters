@@ -70,6 +70,9 @@
     <ClInclude Include="Include\Rendering\BuffRenderDeviceDriver.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Core\BuffSharedPtr.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Core\BuffApplication.cpp">
@@ -102,6 +105,9 @@
       <Filter>Core</Filter>
     </None>
     <None Include="Include\Core\BuffSingleton.inl">
+      <Filter>Core</Filter>
+    </None>
+    <None Include="Include\Core\BuffSharedPtr.inl">
       <Filter>Core</Filter>
     </None>
   </ItemGroup>
