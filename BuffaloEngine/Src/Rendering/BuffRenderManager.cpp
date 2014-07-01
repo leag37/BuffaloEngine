@@ -1,8 +1,12 @@
 // Filename: BuffRenderManager.cpp
 // Author: Gael Huber
 #include "Rendering\BuffRenderManager.h"
+
+#include "Rendering\BuffIndexBuffer.h"
+#include "Rendering\BuffRenderComponent.h"
 #include "Rendering\BuffRenderSystem.h"
 #include "Rendering\BuffRenderWindow.h"
+#include "Rendering\BuffVertexBuffer.h"
 
 namespace BuffaloEngine
 {
@@ -113,5 +117,53 @@ namespace BuffaloEngine
 	const RenderWindow* RenderManager::GetRenderWindow() const
 	{
 		return _renderWindow;
+	}
+
+	/**
+	* Create a camera and register it with the system
+	* @return
+	*	Camera* The created camera
+	*/
+	Camera* RenderManager::CreateCamera()
+	{
+		return 0;
+	}
+
+	/**
+	* Create a render component
+	* @param
+	*	const std::string& Render component name
+	* @param
+	*	const std::string& The name of the mesh
+	* @param
+	*	const std::string& The name of the material to apply to the component
+	* @return
+	*	RenderComponent* A render component
+	*/
+	RenderComponent* RenderManager::CreateRenderComponent(const std::string& name, const std::string& meshName, const std::string& materialName)
+	{
+		// Quick and dirty, create the render component and return it
+		RenderComponent* renderable = new RenderComponent(name, meshName, materialName);
+		return renderable;
+	}
+
+	/**
+	* Create a vertex buffer
+	* @return
+	*	VertexBuffer* The created vertex buffer
+	*/
+	VertexBuffer* RenderManager::CreateVertexBuffer()
+	{
+		return new VertexBuffer(_renderSystem->GetRenderDevice());
+	}
+
+	/**
+	* Create an index buffer
+	* @return
+	*	IndexBuffer* The created index buffer
+	*/
+	IndexBuffer* RenderManager::CreateIndexBuffer()
+	{
+		return new IndexBuffer(_renderSystem->GetRenderDevice());
 	}
 }

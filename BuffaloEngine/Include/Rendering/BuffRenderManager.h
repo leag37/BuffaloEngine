@@ -5,12 +5,18 @@
 
 #include "Core\BuffPrerequisites.h"
 #include "Core\BuffSingleton.h"
+#include "Rendering\BuffCamera.h"
+
+#include <string>
 
 namespace BuffaloEngine
 {
 	// Forward declarations
+	class IndexBuffer;
+	class RenderComponent;
 	class RenderSystem;
 	class RenderWindow;
+	class VertexBuffer;
 
 	/**	\addtogroup Rendering
 	*	@{
@@ -71,6 +77,40 @@ namespace BuffaloEngine
 		*	const RenderWindow* The render window to fetch
 		*/
 		const RenderWindow* GetRenderWindow() const;
+
+		/**
+		* Create a camera and register it with the system
+		* @return
+		*	Camera* The created camera
+		*/
+		Camera* CreateCamera();
+
+		/**
+		* Create a render component
+		* @param
+		*	const std::string& Render component name
+		* @param
+		*	const std::string& The name of the mesh
+		* @param
+		*	const std::string& The name of the material to apply to the component
+		* @return
+		*	RenderComponent* A render component
+		*/
+		RenderComponent* CreateRenderComponent(const std::string& name, const std::string& meshName, const std::string& materialName);
+
+		/**
+		* Create a vertex buffer
+		* @return
+		*	VertexBuffer* The created vertex buffer
+		*/
+		VertexBuffer* CreateVertexBuffer();
+
+		/**
+		* Create an index buffer
+		* @return
+		*	IndexBuffer* The created index buffer
+		*/
+		IndexBuffer* CreateIndexBuffer();
 
 	private:
 		/**

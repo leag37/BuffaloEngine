@@ -7,6 +7,9 @@
 
 namespace BuffaloEngine
 {
+
+	typedef unsigned int meow;
+
 	/**
 	* Template type for a shared pointer. This acts like a reference counter for the contained object.
 	*/

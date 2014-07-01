@@ -66,6 +66,8 @@
     <ClInclude Include="Include\Core\BuffAllocatedClass.h" />
     <ClInclude Include="Include\Core\BuffApplication.h" />
     <ClInclude Include="Include\Core\BuffBaseAllocator.h" />
+    <ClInclude Include="Include\Core\BuffComponent.h" />
+    <ClInclude Include="Include\Core\BuffEvent.h" />
     <ClInclude Include="Include\Core\BuffJob.h" />
     <ClInclude Include="Include\Core\BuffJobManager.h" />
     <ClInclude Include="Include\Core\BuffMemory.h" />
@@ -73,22 +75,44 @@
     <ClInclude Include="Include\Core\BuffSharedPtr.h" />
     <ClInclude Include="Include\Core\BuffSingleton.h" />
     <ClInclude Include="Include\Core\BuffWindowsEventHandler.h" />
+    <ClInclude Include="Include\Entities\BuffEntity.h" />
+    <ClInclude Include="Include\Rendering\BuffCamera.h" />
+    <ClInclude Include="Include\Rendering\BuffConstantBuffer.h" />
+    <ClInclude Include="Include\Rendering\BuffHardwareBuffer.h" />
+    <ClInclude Include="Include\Rendering\BuffIndexBuffer.h" />
+    <ClInclude Include="Include\Rendering\BuffMesh.h" />
+    <ClInclude Include="Include\Rendering\BuffMeshSerializer.h" />
+    <ClInclude Include="Include\Rendering\BuffRenderComponent.h" />
     <ClInclude Include="Include\Rendering\BuffRenderDevice.h" />
     <ClInclude Include="Include\Rendering\BuffRenderDeviceDriver.h" />
     <ClInclude Include="Include\Rendering\BuffRenderDriver.h" />
     <ClInclude Include="Include\Rendering\BuffRenderManager.h" />
     <ClInclude Include="Include\Rendering\BuffRenderSystem.h" />
     <ClInclude Include="Include\Rendering\BuffRenderWindow.h" />
+    <ClInclude Include="Include\Rendering\BuffShader.h" />
+    <ClInclude Include="Include\Rendering\BuffShaderManager.h" />
+    <ClInclude Include="Include\Rendering\BuffShaderParameter.h" />
+    <ClInclude Include="Include\Rendering\BuffVertexBuffer.h" />
+    <ClInclude Include="Include\Rendering\BuffVertexDescription.h" />
+    <ClInclude Include="Include\Rendering\BuffVertexShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Core\BuffApplication.cpp" />
+    <ClCompile Include="Src\Core\BuffComponent.cpp" />
     <ClCompile Include="Src\Core\BuffJob.cpp" />
     <ClCompile Include="Src\Core\BuffJobManager.cpp" />
+    <ClCompile Include="Src\Rendering\BuffHardwareBuffer.cpp" />
+    <ClCompile Include="Src\Rendering\BuffIndexBuffer.cpp" />
+    <ClCompile Include="Src\Rendering\BuffMesh.cpp" />
+    <ClCompile Include="Src\Rendering\BuffMeshSerializer.cpp" />
+    <ClCompile Include="Src\Rendering\BuffRenderComponent.cpp" />
     <ClCompile Include="Src\Rendering\BuffRenderDevice.cpp" />
     <ClCompile Include="Src\Rendering\BuffRenderDeviceDriver.cpp" />
     <ClCompile Include="Src\Rendering\BuffRenderManager.cpp" />
     <ClCompile Include="Src\Rendering\BuffRenderSystem.cpp" />
     <ClCompile Include="Src\Rendering\BuffRenderWindow.cpp" />
+    <ClCompile Include="Src\Rendering\BuffVertexBuffer.cpp" />
+    <ClCompile Include="Src\Rendering\BuffVertexDescription.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Include\Core\BuffAllocatedClass.inl" />

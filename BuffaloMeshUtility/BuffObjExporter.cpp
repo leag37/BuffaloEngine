@@ -213,36 +213,32 @@ namespace BuffaloEngine
 		if(oFile.is_open())
 		{
 			// Write the file header
-			oFile << fileHeader.sig[0] << fileHeader.sig[1];
-			oFile << fileHeader.vertexCount;
-			oFile << fileHeader.vertexElements;
-			oFile << fileHeader.indexCount;
+			oFile.write((char*)&fileHeader, sizeof(MeshFileHeader));
 
 			// Write semantics
 			if(posCount > 0)
 			{
-				oFile << VERTEX_ELEMENT_SEMANTIC_POSITION;
+				VertexElementSemantic semantic = VERTEX_ELEMENT_SEMANTIC_POSITION;
+				oFile.write((char*)&semantic, sizeof(VertexElementSemantic));
 			}
 			if(normCount > 0)
 			{
-				oFile << VERTEX_ELEMENT_SEMANTIC_NORMAL;
+				VertexElementSemantic semantic = VERTEX_ELEMENT_SEMANTIC_NORMAL;
+				oFile.write((char*)&semantic, sizeof(VertexElementSemantic));
 			}
 			if(texCount > 0)
 			{
-				oFile << VERTEX_ELEMENT_SEMANTIC_TEXCOORD;
+				VertexElementSemantic semantic = VERTEX_ELEMENT_SEMANTIC_TEXCOORD;
+				oFile.write((char*)&semantic, sizeof(VertexElementSemantic));
 			}
 			
 			// Write vertex data
-			for(unsigned int i = 0; i < vertices.size(); ++i)
-			{
-				oFile << vertices[i];
-			}
+			oFile.write((char*)&vertices[0], sizeof(float) * vertices.size());
 
 			// Write indices
-			for(unsigned int i = 0; i < indices.size(); ++i)
-			{
-				oFile << indices[i];
-			}
+			oFile.write((char*)&indices[0], sizeof(int) * indices.size());
+
+			// Close the file
 			oFile.close();
 		}
 

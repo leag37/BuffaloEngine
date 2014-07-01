@@ -43,6 +43,13 @@ namespace BuffaloEngine
 		*/
 		bool Run();
 
+		/**
+		* Frame update. All world updates are triggered from this function
+		* @param
+		*	bool Returns true if succeeds
+		*/
+		virtual bool Update() = 0;
+
 	protected:
 		/**
 		* Initialize and build the scene

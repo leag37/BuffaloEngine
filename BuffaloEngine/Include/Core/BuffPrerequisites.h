@@ -20,13 +20,6 @@
 #include <D3Dcommon.h>
 #include <D3D11.h>
 
-//**********************
-// Platform definitions
-//**********************
-
-// BuffaloEngine includes
-#include "BuffMemory.h"
-
 namespace BuffaloEngine
 {
 	/** \addtogroup Core
@@ -44,5 +37,13 @@ namespace BuffaloEngine
 	/** @} */
 
 }	// Namespace
+
+//**********************
+// Platform definitions
+//**********************
+
+// BuffaloEngine includes
+#include "BuffMemory.h"
+#include "BuffSharedPtr.h"
 
 #endif // __BUFFPREREQUISITES_H__

@@ -23,6 +23,15 @@
     <Filter Include="Core">
       <UniqueIdentifier>{857ea25d-ad70-4ab2-a9b3-581053cfaf19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{9d4abbd6-944a-4798-b21b-a4335545e144}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Events">
+      <UniqueIdentifier>{eb3052a4-0617-4dcc-91d8-a59fdc674cd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Hardware Buffers">
+      <UniqueIdentifier>{78726747-a778-45fa-9cc1-e2817133a9c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Core\BuffApplication.h">
@@ -73,6 +82,54 @@
     <ClInclude Include="Include\Core\BuffSharedPtr.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffShaderManager.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffVertexShader.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffShader.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffShaderParameter.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Entities\BuffEntity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\BuffEvent.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffCamera.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\BuffComponent.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffRenderComponent.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffMesh.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffMeshSerializer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffVertexDescription.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffConstantBuffer.h">
+      <Filter>Rendering\Hardware Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffHardwareBuffer.h">
+      <Filter>Rendering\Hardware Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffIndexBuffer.h">
+      <Filter>Rendering\Hardware Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffVertexBuffer.h">
+      <Filter>Rendering\Hardware Buffers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Core\BuffApplication.cpp">
@@ -98,6 +155,30 @@
     </ClCompile>
     <ClCompile Include="Src\Rendering\BuffRenderDevice.cpp">
       <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffRenderComponent.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffMesh.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\BuffComponent.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffMeshSerializer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffVertexDescription.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffHardwareBuffer.cpp">
+      <Filter>Rendering\Hardware Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffVertexBuffer.cpp">
+      <Filter>Rendering\Hardware Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffIndexBuffer.cpp">
+      <Filter>Rendering\Hardware Buffers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

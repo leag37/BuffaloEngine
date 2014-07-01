@@ -92,6 +92,16 @@ namespace BuffaloEngine
 	}
 
 	/**
+	* Get the render device owned by the system
+	* @return
+	*	const RenderDevice& The render device
+	*/
+	const RenderDevice& RenderSystem::GetRenderDevice() const
+	{
+		return _device;
+	}
+
+	/**
 	* Create the device driver
 	* @return
 	*	bool Return true if the driver is created successfully

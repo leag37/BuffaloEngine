@@ -48,6 +48,12 @@ namespace BuffaloEngine
 			return false;
 		}
 
+		// All systems are initialized, so create our scene
+		if(InitializeScene() == false)
+		{
+			return false;
+		}
+
 		return true;
 	}
 
@@ -75,6 +81,9 @@ namespace BuffaloEngine
 		MSG msg;
 		bool canRun = true;
 
+		// Create various jobs for main render loops
+		//RenderUpdateJob renderUpdateJob;
+
 		while(canRun)
 		{
 			// Windows message pump
@@ -92,6 +101,12 @@ namespace BuffaloEngine
 			{
 				canRun = false;
 			}
+
+			// Pre-frame update
+			//PreFrameUpdate();
+
+			// Frame update
+			Update();
 
 			// Update rendering
 			if(_renderManager->Update() == false)

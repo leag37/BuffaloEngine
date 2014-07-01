@@ -18,6 +18,13 @@ public:
 	*/
 	TestApp();
 
+	/**
+	* Frame update. All world updates are triggered from this function
+	* @param
+	*	bool Returns true if succeeds
+	*/
+	bool Update();
+
 protected:
 	/**
 	* Initialize and build the scene
@@ -25,6 +32,12 @@ protected:
 	*	bool Return true if the scene is initialized successfully
 	*/
 	bool InitializeScene();
+
+private:
+	/**
+	* Camera!
+	*/
+	//Camera* _camera;
 };
 
 #endif // __BUFFTESTAPP_H__

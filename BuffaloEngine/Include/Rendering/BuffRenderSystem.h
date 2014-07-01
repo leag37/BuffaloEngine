@@ -60,6 +60,13 @@ namespace BuffaloEngine
 		*/
 		void EndScene();
 
+		/**
+		* Get the render device owned by the system
+		* @return
+		*	const RenderDevice& The render device
+		*/
+		const RenderDevice& GetRenderDevice() const;
+
 	private:
 		/**
 		* Create the device driver
