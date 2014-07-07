@@ -47,9 +47,22 @@ namespace BuffaloEngine
 		subresource.SysMemPitch = 0;
 		subresource.SysMemSlicePitch = 0;
 
+		// Calculate the number of vertices in this buffer
+		_vertexCount = bufferDesc.ByteWidth / description.GetVertexSize();
+
 		// Create the buffer
 		HRESULT result = _renderDevice.GetD3DDevice()->CreateBuffer(&bufferDesc, &subresource, &_buffer);
 		return !FAILED(result);
+	}
+
+	/**
+	* Get the number of vertices
+	* @return
+	*	uint The number of vertices in the buffer
+	*/
+	uint VertexBuffer::GetNumVertices() const
+	{
+		return _vertexCount;
 	}
 
 }	// Namespace

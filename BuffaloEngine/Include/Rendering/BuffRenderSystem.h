@@ -11,6 +11,8 @@
 
 namespace BuffaloEngine
 {
+	class RenderComponent;
+
 	/** \addtogroup Rendering
 	*	@{
 	*/
@@ -54,7 +56,8 @@ namespace BuffaloEngine
 		*	const RenderQueue& The render queue to process
 		*/
 		//void Render(const RenderQueue& renderQueue);
-
+		void Render(RenderComponent* renderable);
+		
 		/**
 		* Present the scene
 		*/
@@ -103,6 +106,20 @@ namespace BuffaloEngine
 		*/
 		bool CreateDepthStencilView();
 
+		/**
+		* Bind the render targets to the output graphics pipeline
+		* @return
+		*	bool True if successful
+		*/
+		bool BindRenderTargets();
+
+		/**
+		* Create the viewport
+		* @return
+		*	bool True if successful
+		*/
+		bool CreateViewport();
+
 	private:
 		/**
 		* Render device
@@ -123,6 +140,16 @@ namespace BuffaloEngine
 		* Render target view
 		*/
 		ID3D11RenderTargetView* _renderTargetView;
+
+		/**
+		* Depth stencil buffer
+		*/
+		ID3D11Texture2D* _depthStencilBuffer;
+
+		/**
+		* Depth stencil state
+		*/
+		ID3D11DepthStencilState* _depthStencilState;
 
 		/**
 		* Depth stencil view

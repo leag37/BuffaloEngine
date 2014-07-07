@@ -4,6 +4,7 @@
 #define __BUFFRENDERCOMPONENT_H__
 
 #include "Core\BuffComponent.h"
+#include "Rendering\BuffRenderDevice.h"
 
 namespace BuffaloEngine
 {
@@ -22,12 +23,9 @@ namespace BuffaloEngine
 	{
 	public:
 		/**
-		* Default constructor
-		*/
-		RenderComponent();
-
-		/**
 		* Constructor
+		* @param
+		*	const RenderDevice& The render device used to create and render the component
 		* @param
 		*	const std::string& The name of the component
 		* @param
@@ -35,12 +33,25 @@ namespace BuffaloEngine
 		* @param
 		*	const std::string& The material name
 		*/
-		RenderComponent(const std::string& name, const std::string& meshName, const std::string& materialName);
+		explicit RenderComponent(const RenderDevice& device, const std::string& name, const std::string& meshName, const std::string& materialName);
 
 		/**
 		* Destructor
 		*/
 		//~RenderComponent();
+
+		/**
+		* Render this component
+		*/
+		void Render(const RenderDevice& device);
+
+		/**
+		* Get the attached material
+		* @return
+		*	Material* The attached material
+		*/
+		Material* GetMaterial() const;
+
 	private:
 		/**
 		* The mesh owned by this component
@@ -50,7 +61,12 @@ namespace BuffaloEngine
 		/**
 		* The material used by this component
 		*/
-		//Material* _material;
+		Material* _material;
+
+		/**
+		* The render device
+		*/
+		const RenderDevice& _device;
 	};
 
 	/** @} */

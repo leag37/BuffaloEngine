@@ -64,4 +64,35 @@ namespace BuffaloEngine
 		}
 	}
 
+	/**
+	* Render the mesh
+	* @param
+	*	const RenderDevice& device
+	*/
+	void Mesh::Render(const RenderDevice device)
+	{
+		// Get the context
+		ID3D11DeviceContext* context = device.GetImmediateContext();
+
+		// Set and render the buffers
+		ID3D11Buffer *vertexBuffer, *indexBuffer;
+		uint stride, offset;
+		
+		vertexBuffer = _vertexBuffer->GetBuffer();
+		indexBuffer = _indexBuffer->GetBuffer();
+		stride = _vertexDescription.GetVertexSize();
+		offset = 0;
+		context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		context->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);
+		context->IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);
+
+		ID3D11VertexShader* vShader;
+		ID3D11PixelShader* pShader;
+
+		context->VSGetShader(&vShader, NULL, 0);
+		context->PSGetShader(&pShader, NULL, 0);
+		
+		context->DrawIndexed(_vertexBuffer->GetNumVertices(), 0, 0);
+	}
+
 }	// Namespace

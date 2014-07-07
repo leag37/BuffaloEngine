@@ -1,0 +1,25 @@
+# Filename: Basic.shader
+# Author: Gael Huber
+
+# The input layout definition
+layout
+{
+	float3 position : POSITION;
+	float3 norm : NORMAL;
+	float2 texCoord : TEXCOORD;	
+}
+
+# The constant buffer for the camera
+cbuffer CameraBuffer
+{
+	float4x4 gWorldViewProj
+}
+
+technique
+{
+	pass
+	{
+		vertex_shader BasicVS Basic.hlsl
+		pixel_shader BasicPS Basic.hlsl
+	}
+}

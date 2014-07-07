@@ -8,6 +8,8 @@
 
 namespace BuffaloEngine
 {
+	class RenderDevice;
+
 	/** \addtogroup Rendering
 	*	@{
 	*/
@@ -28,8 +30,54 @@ namespace BuffaloEngine
 	class Shader : public SimpleAlloc
 	{
 	public:
+		/**
+		* Default constructor
+		*/
+		Shader();
 
-	private:
+		/**
+		* Constructor
+		* @param
+		*	const std::string& The name of the shader
+		*/
+		Shader(const std::string& name);
+
+		/**
+		* Destructor
+		*/
+		virtual ~Shader();
+
+		/**
+		* Get the pointer to the shader buffer
+		* @param
+		*	ID3D10Blob* The shader buffer
+		*/
+		ID3D10Blob* GetShaderBuffer() const;
+
+	protected:
+		/**
+		* Initialize the shader
+		* @param
+		*	const std::string& The shader filename
+		* @param
+		*	const std::string& The shader entry point
+		* @param
+		*	const std::string& The shader profile for compilation
+		* @param
+		*	const RenderDevice& The device used to create the shader
+		*/
+		void Initialize(const std::string& fileName, const std::string& entryPoint, const std::string& profile, const RenderDevice& device);
+
+		/**
+		* Initialization implementation
+		* @param
+		*	const RenderDevice& The device used to create the shader
+		* @return
+		*	bool Return true if successful
+		*/
+		virtual bool InitializeImpl(const RenderDevice& device) = 0;
+
+	protected:
 		/**
 		* The name of the shader
 		*/
@@ -48,7 +96,7 @@ namespace BuffaloEngine
 		/**
 		* The compiled shader blob
 		*/
-		ID3D10Blob* _shader;
+		ID3D10Blob* _shaderBuffer;
 
 		/**
 		* The shader type

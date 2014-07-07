@@ -12,6 +12,7 @@
 namespace BuffaloEngine
 {
 	// Forward declarations
+	class ConstantBuffer;
 	class IndexBuffer;
 	class RenderComponent;
 	class RenderSystem;
@@ -112,6 +113,16 @@ namespace BuffaloEngine
 		*/
 		IndexBuffer* CreateIndexBuffer();
 
+		/**
+		* Create a constant buffer
+		* @return
+		*	ConstantBuffer* The created constant buffer
+		*/
+		ConstantBuffer* CreateConstantBuffer();
+
+		// TEMP
+		void SetRenderable(RenderComponent* renderable);
+
 	private:
 		/**
 		* Render system. This owns the low-level rendering devices
@@ -152,6 +163,10 @@ namespace BuffaloEngine
 		* Shader manager
 		*/
 		//ShaderManager* _shaderManager;
+
+		
+		// TEMP - Renderable
+		RenderComponent* _renderable;
 	};
 
 	/** @} */

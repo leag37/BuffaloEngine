@@ -41,11 +41,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;Include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -80,8 +83,10 @@
     <ClInclude Include="Include\Rendering\BuffConstantBuffer.h" />
     <ClInclude Include="Include\Rendering\BuffHardwareBuffer.h" />
     <ClInclude Include="Include\Rendering\BuffIndexBuffer.h" />
+    <ClInclude Include="Include\Rendering\BuffMaterial.h" />
     <ClInclude Include="Include\Rendering\BuffMesh.h" />
     <ClInclude Include="Include\Rendering\BuffMeshSerializer.h" />
+    <ClInclude Include="Include\Rendering\BuffPixelShader.h" />
     <ClInclude Include="Include\Rendering\BuffRenderComponent.h" />
     <ClInclude Include="Include\Rendering\BuffRenderDevice.h" />
     <ClInclude Include="Include\Rendering\BuffRenderDeviceDriver.h" />
@@ -101,8 +106,11 @@
     <ClCompile Include="Src\Core\BuffComponent.cpp" />
     <ClCompile Include="Src\Core\BuffJob.cpp" />
     <ClCompile Include="Src\Core\BuffJobManager.cpp" />
+    <ClCompile Include="Src\Rendering\BuffConstantBuffer.cpp" />
     <ClCompile Include="Src\Rendering\BuffHardwareBuffer.cpp" />
     <ClCompile Include="Src\Rendering\BuffIndexBuffer.cpp" />
+    <ClCompile Include="Src\Rendering\BuffPixelShader.cpp" />
+    <ClCompile Include="Src\Rendering\BuffMaterial.cpp" />
     <ClCompile Include="Src\Rendering\BuffMesh.cpp" />
     <ClCompile Include="Src\Rendering\BuffMeshSerializer.cpp" />
     <ClCompile Include="Src\Rendering\BuffRenderComponent.cpp" />
@@ -111,8 +119,10 @@
     <ClCompile Include="Src\Rendering\BuffRenderManager.cpp" />
     <ClCompile Include="Src\Rendering\BuffRenderSystem.cpp" />
     <ClCompile Include="Src\Rendering\BuffRenderWindow.cpp" />
+    <ClCompile Include="Src\Rendering\BuffShader.cpp" />
     <ClCompile Include="Src\Rendering\BuffVertexBuffer.cpp" />
     <ClCompile Include="Src\Rendering\BuffVertexDescription.cpp" />
+    <ClCompile Include="Src\Rendering\BuffVertexShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Include\Core\BuffAllocatedClass.inl" />

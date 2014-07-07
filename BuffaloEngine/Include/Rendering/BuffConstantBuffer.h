@@ -18,21 +18,23 @@ namespace BuffaloEngine
 	{
 	public:
 		/**
-		* Default constructor
-		*/
-		ConstantBuffer();
-
-		/**
 		* Constructor
 		* @param
-		*	const std::string& The name of the constant buffer
+		*	const RenderDevice& The render device
 		*/
-		ConstantBuffer(const std::string& name);
+		explicit ConstantBuffer(const RenderDevice& renderDevice);
 
 		/**
 		* Destructor
 		*/
 		~ConstantBuffer();
+
+		/**
+		* Initialize the buffer
+		* @return
+		*	bool Returns true if successfully initialized
+		*/
+		bool Initialize();
 
 	private:
 

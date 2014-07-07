@@ -68,7 +68,6 @@ namespace BuffaloEngine
 		mesh->_vertexDescription = vertexDescription;
 
 		// Read in vertex data
-		int test = header.vertexCount * vertexDescription.GetVertexSize();
 		std::vector<float> vertexData = std::vector<float>(header.vertexCount * vertexDescription.GetVertexSize());
 		file.read((char*)&vertexData[0], vertexData.capacity());
 

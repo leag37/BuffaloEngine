@@ -32,6 +32,9 @@
     <Filter Include="Rendering\Hardware Buffers">
       <UniqueIdentifier>{78726747-a778-45fa-9cc1-e2817133a9c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering\Materials">
+      <UniqueIdentifier>{d7c981ea-f450-4eb0-a4d6-d6a7e78716bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Core\BuffApplication.h">
@@ -82,18 +85,6 @@
     <ClInclude Include="Include\Core\BuffSharedPtr.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Rendering\BuffShaderManager.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Rendering\BuffVertexShader.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Rendering\BuffShader.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Rendering\BuffShaderParameter.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Include\Entities\BuffEntity.h">
       <Filter>Entities</Filter>
     </ClInclude>
@@ -129,6 +120,24 @@
     </ClInclude>
     <ClInclude Include="Include\Rendering\BuffVertexBuffer.h">
       <Filter>Rendering\Hardware Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffMaterial.h">
+      <Filter>Rendering\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffShader.h">
+      <Filter>Rendering\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffVertexShader.h">
+      <Filter>Rendering\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffShaderParameter.h">
+      <Filter>Rendering\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffShaderManager.h">
+      <Filter>Rendering\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffPixelShader.h">
+      <Filter>Rendering\Materials</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +187,21 @@
       <Filter>Rendering\Hardware Buffers</Filter>
     </ClCompile>
     <ClCompile Include="Src\Rendering\BuffIndexBuffer.cpp">
+      <Filter>Rendering\Hardware Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffMaterial.cpp">
+      <Filter>Rendering\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffShader.cpp">
+      <Filter>Rendering\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffVertexShader.cpp">
+      <Filter>Rendering\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffPixelShader.cpp">
+      <Filter>Rendering\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffConstantBuffer.cpp">
       <Filter>Rendering\Hardware Buffers</Filter>
     </ClCompile>
   </ItemGroup>

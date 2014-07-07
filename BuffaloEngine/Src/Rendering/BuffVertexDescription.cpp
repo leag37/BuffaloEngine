@@ -98,6 +98,10 @@ namespace BuffaloEngine
 
 		switch(semantic)
 		{
+		// Color is a Vector4 value
+		case VERTEX_ELEMENT_SEMANTIC_COLOR:
+			return sizeof(float) * 4;
+
 		// Position and normal are both Vector3 values
 		case VERTEX_ELEMENT_SEMANTIC_POSITION:
 		case VERTEX_ELEMENT_SEMANTIC_NORMAL:

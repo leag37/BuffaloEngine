@@ -1,7 +1,7 @@
-// Filename: BuffVertexShader.h
+// Filename: BuffPixelShader.h
 // Author: Gael Huber
-#ifndef __BUFFVERTEXSHADER_H__
-#define __BUFFVERTEXSHADER_H__
+#ifndef __BUFFPIXELSHADER_H__
+#define __BUFFPIXELSHADER_H__
 
 #include "Core\BuffPrerequisites.h"
 #include "Rendering\BuffShader.h"
@@ -12,13 +12,13 @@ namespace BuffaloEngine
 	*	@{
 	*/
 
-	class VertexShader : public Shader
+	class PixelShader : public Shader
 	{
 	public:
 		/**
 		* Default constructor
 		*/
-		VertexShader();
+		PixelShader();
 
 		/**
 		* Constructor
@@ -27,14 +27,14 @@ namespace BuffaloEngine
 		* @param
 		*	const RenderDevice& The device used to create the shader
 		*/
-		VertexShader(const std::string& name, const RenderDevice& device);
+		PixelShader(const std::string& name, const RenderDevice& device);
 
 		/**
 		* Get a pointer to the shader
 		* @return
-		*	ID3D11VertexShader* The shader
+		*	ID3D11PixelShader* The shader
 		*/
-		ID3D11VertexShader* GetShader() const;
+		ID3D11PixelShader* GetShader() const;
 
 	protected:
 		/**
@@ -48,13 +48,13 @@ namespace BuffaloEngine
 
 	private:
 		/**
-		* The vertex shader
+		* The pixel shader
 		*/
-		ID3D11VertexShader* _shader;
+		ID3D11PixelShader* _shader;
 	};
 
 	/** @} */
 
 }	// Namespace
 
-#endif // __BUFFVERTEXSHADER_H__
+#endif // __BUFFPIXELSHADER_H__

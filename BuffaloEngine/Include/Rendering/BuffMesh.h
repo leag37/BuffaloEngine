@@ -13,6 +13,7 @@ namespace BuffaloEngine
 {
 	// Forward declarations
 	class IndexBuffer;
+	class RenderDevice;
 	class VertexBuffer;
 
 	/**	\addtogroup Rendering
@@ -52,6 +53,13 @@ namespace BuffaloEngine
 		* Destroy the mesh
 		*/
 		void Destroy();
+
+		/**
+		* Render the mesh
+		* @param
+		*	const RenderDevice& device
+		*/
+		void Render(const RenderDevice device);
 
 	private:
 		/**

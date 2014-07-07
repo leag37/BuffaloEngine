@@ -2,6 +2,7 @@
 // Author: Gael Huber
 #include "Rendering\BuffRenderManager.h"
 
+#include "Rendering\BuffConstantBuffer.h"
 #include "Rendering\BuffIndexBuffer.h"
 #include "Rendering\BuffRenderComponent.h"
 #include "Rendering\BuffRenderSystem.h"
@@ -89,6 +90,10 @@ namespace BuffaloEngine
 		// Prepare the render system for rendering the scene
 		_renderSystem->BeginScene();
 
+
+		// Render a component
+		_renderSystem->Render(_renderable);
+
 		// Query the scene manager for the render queue
 		//RenderQueueGroup renderQueueGroup = _sceneManager->QueryVisibleObjects();
 
@@ -143,7 +148,7 @@ namespace BuffaloEngine
 	RenderComponent* RenderManager::CreateRenderComponent(const std::string& name, const std::string& meshName, const std::string& materialName)
 	{
 		// Quick and dirty, create the render component and return it
-		RenderComponent* renderable = new RenderComponent(name, meshName, materialName);
+		RenderComponent* renderable = new RenderComponent(_renderSystem->GetRenderDevice(), name, meshName, materialName);
 		return renderable;
 	}
 
@@ -165,5 +170,21 @@ namespace BuffaloEngine
 	IndexBuffer* RenderManager::CreateIndexBuffer()
 	{
 		return new IndexBuffer(_renderSystem->GetRenderDevice());
+	}
+
+	/**
+	* Create a constant buffer
+	* @return
+	*	ConstantBuffer* The created constant buffer
+	*/
+	ConstantBuffer* RenderManager::CreateConstantBuffer()
+	{
+		return new ConstantBuffer(_renderSystem->GetRenderDevice());
+	}
+
+	// TEMP
+	void RenderManager::SetRenderable(RenderComponent* renderable)
+	{
+		_renderable = renderable;
 	}
 }

@@ -43,6 +43,19 @@ namespace BuffaloEngine
 		*	bool Returns true if successfully initialized, false otherwise
 		*/
 		bool Initialize(std::vector<float>& data, const VertexDescription& description);
+
+		/**
+		* Get the number of vertices
+		* @return
+		*	uint The number of vertices in the buffer
+		*/
+		uint GetNumVertices() const;
+
+	private:
+		/**
+		* The number of vertices in the buffer
+		*/
+		uint _vertexCount;
 	};
 
 	/** @} */
