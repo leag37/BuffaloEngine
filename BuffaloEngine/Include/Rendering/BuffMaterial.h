@@ -82,6 +82,11 @@ namespace BuffaloEngine
 		* Input layout
 		*/
 		ID3D11InputLayout* _inputLayout;
+
+		/**
+		* Sampler state
+		*/
+		ID3D11SamplerState* _samplerState;
 	};
 
 	/** @} */

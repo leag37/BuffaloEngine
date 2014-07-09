@@ -64,6 +64,11 @@ namespace BuffaloEngine
 		Material* _material;
 
 		/**
+		* Texture
+		*/
+		ID3D11ShaderResourceView* _texture;
+
+		/**
 		* The render device
 		*/
 		const RenderDevice& _device;

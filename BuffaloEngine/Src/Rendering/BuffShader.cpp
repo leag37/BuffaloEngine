@@ -61,8 +61,8 @@ namespace BuffaloEngine
 	void Shader::Initialize(const std::string& fileName, const std::string& entryPoint, const std::string& profile, const RenderDevice& device)
 	{
 		ID3D10Blob* error;
-
-		HRESULT result = D3DX11CompileFromFile(fileName.c_str(), NULL, NULL, entryPoint.c_str(), profile.c_str(), D3DCOMPILE_ENABLE_STRICTNESS, NULL, NULL, &_shaderBuffer, &error, NULL);
+		//(LPCWSTR)fileName.c_str()
+		HRESULT result = D3DCompileFromFile(L"Resources/Shaders/Basic.hlsl", NULL, NULL, entryPoint.c_str(), profile.c_str(), D3DCOMPILE_ENABLE_STRICTNESS, NULL, &_shaderBuffer, &error);
 
 		if(FAILED(result))
 		{

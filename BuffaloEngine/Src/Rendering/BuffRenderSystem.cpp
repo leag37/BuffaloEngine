@@ -110,49 +110,43 @@ namespace BuffaloEngine
 		material->SetActive(_device);
 
 		// Create camera components
-		D3DXVECTOR3 up, position, lookAt;
-		D3DXMATRIX rotationMatrix, worldMatrix, viewMatrix, projectionMatrix;
+		DirectX::XMVECTOR up, position, lookAt;
+		DirectX::XMMATRIX rotationMatrix, worldMatrix, viewMatrix, projectionMatrix;
 
 		// Setup the vector that points upwards.
-		up.x = 0.0f;
-		up.y = 1.0f;
-		up.z = 0.0f;
-
+		up = DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+		
 		// Setup the position of the camera in the world.
-		position.x = 0.0f;
-		position.y = 0.0f;
-		position.z = -10.0f;
+		position = DirectX::XMVectorSet(0.0f, 0.0f, -10.0f, 0.0f);
 
 		// Setup where the camera is looking by default.
-		lookAt.x = 0.0f;
-		lookAt.y = 0.0f;
-		lookAt.z = 1.0f;
-		
+		lookAt = DirectX::XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
+
 		// Create the rotation matrix from the yaw, pitch, and roll values.
-		D3DXMatrixRotationYawPitchRoll(&rotationMatrix, 0.0f, 0.0f, 0.0f);
+		rotationMatrix = DirectX::XMMatrixRotationRollPitchYaw(0.0f, 0.0f, 0.0f);
 
 		// Transform the lookAt and up vector by the rotation matrix so the view is correctly rotated at the origin.
-		D3DXVec3TransformCoord(&lookAt, &lookAt, &rotationMatrix);
-		D3DXVec3TransformCoord(&up, &up, &rotationMatrix);
+		lookAt = DirectX::XMVector3TransformCoord(lookAt, rotationMatrix);
+		up = DirectX::XMVector3TransformCoord(up, rotationMatrix);
 
 		// Translate the rotated camera position to the location of the viewer.
-		lookAt = position + lookAt;
+		lookAt = DirectX::XMVectorAdd(position, lookAt);
 
 		// Finally create the view matrix from the three updated vectors.
-		D3DXMatrixLookAtLH(&viewMatrix, &position, &lookAt, &up);
+		viewMatrix = DirectX::XMMatrixLookAtLH(position, lookAt, up);
 
 		// Create the world matrix
-		D3DXMatrixIdentity(&worldMatrix);
+		worldMatrix = DirectX::XMMatrixIdentity();
 
 		// Create the projection matrix
-		float fieldOfView = (float)D3DX_PI / 4.0f;
+		float fieldOfView = (float)DirectX::XM_PI / 4.0f;
 		float screenAspect = 800.0f / 600.0f;
-		D3DXMatrixPerspectiveFovLH(&projectionMatrix, fieldOfView, screenAspect, 0.1f, 1000.0f);
+		projectionMatrix = DirectX::XMMatrixPerspectiveFovLH(fieldOfView, screenAspect, 0.1f, 1000.0f);
 		
-		D3DXMATRIX worldViewProj;
-		D3DXMatrixMultiply(&worldViewProj, &worldMatrix, &viewMatrix);
-		D3DXMatrixMultiply(&worldViewProj, &worldViewProj, &projectionMatrix);
-		D3DXMatrixTranspose(&worldViewProj, &worldViewProj);
+		DirectX::XMMATRIX worldViewProj;
+		worldViewProj = DirectX::XMMatrixMultiply(worldMatrix, viewMatrix);
+		worldViewProj = DirectX::XMMatrixMultiply(worldViewProj, projectionMatrix);
+		worldViewProj = DirectX::XMMatrixTranspose(worldViewProj);
 
 		// Get the material's constant buffer and update its values
 		ID3D11DeviceContext* context = _device.GetImmediateContext();
@@ -168,8 +162,8 @@ namespace BuffaloEngine
 		}
 
 		// Get a pointer to the data in the constant buffer.
-		D3DXMATRIX* wvpMatrix = (D3DXMATRIX*)mappedResource.pData;
-		*wvpMatrix = worldViewProj;
+		DirectX::XMFLOAT4X4* wvpMatrix = (DirectX::XMFLOAT4X4*)mappedResource.pData;
+		DirectX::XMStoreFloat4x4(wvpMatrix, worldViewProj);
 
 		// Unmap the data
 		context->Unmap(buffer, 0);

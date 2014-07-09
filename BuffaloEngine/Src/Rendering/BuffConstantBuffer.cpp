@@ -29,7 +29,7 @@ namespace BuffaloEngine
 	bool ConstantBuffer::Initialize()
 	{
 		D3D11_BUFFER_DESC cbDesc;
-		cbDesc.ByteWidth = sizeof(D3DXMATRIX);
+		cbDesc.ByteWidth = sizeof(DirectX::XMFLOAT4X4);
 		cbDesc.Usage = D3D11_USAGE_DYNAMIC;
 		cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 		cbDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;

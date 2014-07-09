@@ -6,22 +6,25 @@
 #define __BUFFPREREQUISITES_H__
 
 #if defined(_WIN32) || defined(_WIN64)
-#include <Windows.h>
+//#include <Windows.h>
 #endif
 #include <xmmintrin.h>
 
 // DirectX 11
 #pragma comment(lib, "dxgi.lib")
 #pragma comment(lib, "d3d11.lib")
-#pragma comment(lib, "d3dx11.lib")
-#pragma comment(lib, "d3dx10.lib")
+//#pragma comment(lib, "d3dx11.lib")
+#pragma comment(lib, "d3d10.lib")
 #pragma comment(lib, "d3dcompiler.lib")
 
 #include <DXGI.h>
-#include <D3Dcommon.h>
-#include <D3DX11.h>
-#include <D3DX10.h>
+#include <D3D11.h>
+#include <D3D10.h>
+#include <DirectXMath.h>
+#include <DDSTextureLoader.h>
+#include <WICTextureLoader.h>
 #include <D3Dcompiler.h>
+#include <D3Dcommon.h>
 
 namespace BuffaloEngine
 {

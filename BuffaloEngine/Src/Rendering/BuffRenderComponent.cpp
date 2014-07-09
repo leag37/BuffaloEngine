@@ -29,6 +29,9 @@ namespace BuffaloEngine
 		// Create the material
 		_material = new Material(materialName);
 		_material->Initialize(device);
+
+		// Create the texture
+		HRESULT result = DirectX::CreateWICTextureFromFile(_device.GetD3DDevice(), L"Resources/Textures/tank.jpg", NULL, &_texture);
 	}
 
 	/**
@@ -36,6 +39,9 @@ namespace BuffaloEngine
 	*/
 	void RenderComponent::Render(const RenderDevice& device)
 	{
+		// Set the texture resource
+		device.GetImmediateContext()->PSSetShaderResources(0, 1, &_texture);
+
 		// Set the vertex buffer
 		_mesh->Render(device);
 	}
