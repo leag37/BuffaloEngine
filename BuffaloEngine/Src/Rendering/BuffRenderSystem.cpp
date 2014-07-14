@@ -354,7 +354,7 @@ namespace BuffaloEngine
 		// Create the depth buffer description
 		D3D11_TEXTURE2D_DESC depthBufferDesc;
 		
-		// Initialize the depth buffer descriptino
+		// Initialize the depth buffer description
 		ZeroMemory(&depthBufferDesc, sizeof(depthBufferDesc));
 
 		// Setup buffer descriptin

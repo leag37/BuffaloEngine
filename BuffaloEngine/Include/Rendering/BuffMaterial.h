@@ -23,6 +23,12 @@ namespace BuffaloEngine
 	*/
 	class Material : public SimpleAlloc
 	{
+	private:
+		/**
+		* Loader for materials
+		*/
+		class MaterialReader;
+
 	public:
 		/**
 		* Default constructor

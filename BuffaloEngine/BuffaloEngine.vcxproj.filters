@@ -139,6 +139,15 @@
     <ClInclude Include="Include\Rendering\BuffPixelShader.h">
       <Filter>Rendering\Materials</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffMaterialReader.h">
+      <Filter>Rendering\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffHardwareBufferParameter.h">
+      <Filter>Rendering\Hardware Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffInputLayoutParameter.h">
+      <Filter>Rendering\Materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Core\BuffApplication.cpp">
@@ -203,6 +212,9 @@
     </ClCompile>
     <ClCompile Include="Src\Rendering\BuffConstantBuffer.cpp">
       <Filter>Rendering\Hardware Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffMaterialReader.cpp">
+      <Filter>Rendering\Materials</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

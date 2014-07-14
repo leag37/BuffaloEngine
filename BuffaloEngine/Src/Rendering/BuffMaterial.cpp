@@ -3,6 +3,7 @@
 #include "Rendering\BuffMaterial.h"
 
 #include "Rendering\BuffConstantBuffer.h"
+#include "Rendering\BuffMaterialReader.h"
 #include "Rendering\BuffPixelShader.h"
 #include "Rendering\BuffRenderDevice.h"
 #include "Rendering\BuffRenderManager.h"
@@ -35,6 +36,10 @@ namespace BuffaloEngine
 	*/
 	void Material::Initialize(const RenderDevice& device)
 	{
+		// Deserialize the material
+		MaterialReader reader;
+		reader.Read(this);
+
 		// Create shaders
 		_vertexShader = new VertexShader(_name, device);
 		_pixelShader = new PixelShader(_name, device);
