@@ -22,6 +22,52 @@ namespace BuffaloEngine
 		SHADER_PARAMETER_TYPE_FLOAT4,
 	};
 
+	/**
+	* A description of a shader parameter
+	*/
+	class ShaderParameter
+	{
+	public:
+		/**
+		* Default constructor
+		*/
+		ShaderParameter();
+
+		/**
+		* Constructor
+		* @param
+		*	ShaderParameterType The type of shader parameter
+		*/
+		ShaderParameter(ShaderParameterType type);
+
+		/**
+		* Copy constructor
+		* @param
+		*	const ShaderParameter& The parameter to copy
+		*/
+		ShaderParameter(const ShaderParameter& other);
+
+		/**
+		* Destructor
+		*/
+		~ShaderParameter();
+
+		/**
+		* Assignment operator
+		* @param
+		*	const ShaderParameter& The parameter to copy
+		* @return
+		*	ShaderParameter& The resultant parameter
+		*/
+		ShaderParameter& operator=(const ShaderParameter& other);
+
+	private:
+		/**
+		* The type of parameter
+		*/
+		ShaderParameterType _type;
+	};
+
 	/** @} */
 
 }	// Namespace

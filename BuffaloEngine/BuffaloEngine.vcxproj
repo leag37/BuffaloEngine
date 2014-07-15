@@ -118,6 +118,7 @@
     <ClCompile Include="Src\Rendering\BuffConstantBuffer.cpp" />
     <ClCompile Include="Src\Rendering\BuffHardwareBuffer.cpp" />
     <ClCompile Include="Src\Rendering\BuffIndexBuffer.cpp" />
+    <ClCompile Include="Src\Rendering\BuffInputLayoutParameter.cpp" />
     <ClCompile Include="Src\Rendering\BuffMaterialReader.cpp" />
     <ClCompile Include="Src\Rendering\BuffPixelShader.cpp" />
     <ClCompile Include="Src\Rendering\BuffMaterial.cpp" />
