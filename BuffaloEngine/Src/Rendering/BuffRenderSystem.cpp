@@ -148,8 +148,48 @@ namespace BuffaloEngine
 		worldViewProj = DirectX::XMMatrixMultiply(worldViewProj, projectionMatrix);
 		worldViewProj = DirectX::XMMatrixTranspose(worldViewProj);
 
+		DirectX::XMMATRIX viewProjMatrix = DirectX::XMMatrixMultiply(viewMatrix, projectionMatrix);
+
+		DirectX::XMFLOAT4X4 mWorld, mViewProj;
+
+		// Temp stuff
+		DirectX::XMMATRIX w = DirectX::XMMatrixTranspose(worldMatrix);
+		DirectX::XMMATRIX vp = DirectX::XMMatrixTranspose(viewProjMatrix);
+
+		DirectX::XMMATRIX wvp = DirectX::XMMatrixMultiply(w, vp);
+
+		DirectX::XMStoreFloat4x4(&mWorld, DirectX::XMMatrixTranspose(worldMatrix));
+		DirectX::XMStoreFloat4x4(&mViewProj, DirectX::XMMatrixTranspose(viewProjMatrix));
+
+		// Map the frame values to the buffer
+		material->UpdateCBufferParam("gViewProj", mViewProj);
+		
+		// Render the material frame requirements
+		material->RenderFrame(_device);
+
+		// Get the technique
+		for (uint techniqueIndex = 0; techniqueIndex < 1; ++techniqueIndex)
+		{
+			const Technique& technique = material->GetTechniqueByIndex(techniqueIndex);
+			
+			// Iterate through each pass of the technique
+			for (uint passIndex = 0; passIndex < 1; ++passIndex)
+			{
+				// Set the active pass
+				const Pass& pass = technique.GetPassAtIndex(passIndex);
+
+				// Activate the pass
+				pass.SetActive(_device);
+
+				// Render each object
+				material->UpdateCBufferParam("gWorld", mWorld);
+				material->RenderObject(_device);
+				renderable->Render(_device);
+			}
+		}
+
 		// Get the material's constant buffer and update its values
-		ID3D11DeviceContext* context = _device.GetImmediateContext();
+/*		ID3D11DeviceContext* context = _device.GetImmediateContext();
 		D3D11_MAPPED_SUBRESOURCE mappedResource;
 		ConstantBuffer* cb = material->GetConstantBuffer();
 		ID3D11Buffer* buffer = cb->GetBuffer();
@@ -170,9 +210,9 @@ namespace BuffaloEngine
 
 		// Update the constant buffer
 		context->VSSetConstantBuffers(0, 1, &buffer);
-		
+	*/	
 		// Draw indexed
-		renderable->Render(_device);
+		//renderable->Render(_device);
 	}
 
 	/**

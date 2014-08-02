@@ -53,6 +53,13 @@ namespace BuffaloEngine
 		*/
 		InputLayoutParameter& operator=(const InputLayoutParameter& other);
 
+		/**
+		* Get the Direct3D element description for this parameter
+		* @param
+		*	D3D11_INPUT_ELEMENT_DESC The input element description for this parameter
+		*/
+		D3D11_INPUT_ELEMENT_DESC GetElementDesc() const;
+
 	private:
 		/**
 		* The shader parameter for this input layout parameter
@@ -62,7 +69,7 @@ namespace BuffaloEngine
 		/**
 		* The vertex semantic
 		*/
-		VertexElementSemantic _semantic;
+		VertexElementSemanticDescription _semantic;
 	};
 
 	/** @} */

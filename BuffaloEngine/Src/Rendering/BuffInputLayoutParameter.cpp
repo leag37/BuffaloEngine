@@ -21,7 +21,7 @@ namespace BuffaloEngine
 	*/
 	InputLayoutParameter::InputLayoutParameter(const ShaderParameter& param, VertexElementSemantic semantic)
 		:	_parameter(param),
-			_semantic(semantic)
+			_semantic(VertexElementSemanticDescription(semantic))
 	{
 
 	}
@@ -57,6 +57,25 @@ namespace BuffaloEngine
 		_parameter = other._parameter;
 		_semantic = other._semantic;
 		return *this;
+	}
+
+	/**
+	* Get the Direct3D element description for this parameter
+	* @param
+	*	D3D11_INPUT_ELEMENT_DESC The input element description for this parameter
+	*/
+	D3D11_INPUT_ELEMENT_DESC InputLayoutParameter::GetElementDesc() const
+	{
+		// Fill in the description and return it
+		D3D11_INPUT_ELEMENT_DESC desc;
+		desc.AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
+		desc.Format = _parameter.GetFormat();
+		desc.InputSlot = 0;
+		desc.InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		desc.InstanceDataStepRate = 0;
+		desc.SemanticIndex = 0;
+		desc.SemanticName = (LPCSTR)(_semantic.GetName().c_str());
+		return desc;
 	}
 
 }	// Namespace

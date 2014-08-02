@@ -4,10 +4,12 @@
 
 #include "Rendering\BuffConstantBuffer.h"
 #include "Rendering\BuffIndexBuffer.h"
+#include "Rendering\BuffPixelShader.h"
 #include "Rendering\BuffRenderComponent.h"
 #include "Rendering\BuffRenderSystem.h"
 #include "Rendering\BuffRenderWindow.h"
 #include "Rendering\BuffVertexBuffer.h"
+#include "Rendering\BuffVertexShader.h"
 
 namespace BuffaloEngine
 {
@@ -180,6 +182,36 @@ namespace BuffaloEngine
 	ConstantBuffer* RenderManager::CreateConstantBuffer()
 	{
 		return new ConstantBuffer(_renderSystem->GetRenderDevice());
+	}
+
+	/**
+	* Create a vertex shader
+	* @param
+	*	const std::string& The vertex shader entry point
+	* @param
+	*	const std::string& The vertex shader filename
+	* @param
+	*	VertexShader* The created vertex shader
+	*/
+	VertexShader* RenderManager::CreateVertexShader(const std::string& entryPoint, const std::string& fileName)
+	{
+		VertexShader* vertexShader = new VertexShader(fileName, entryPoint, _renderSystem->GetRenderDevice());
+		return vertexShader;
+	}
+
+	/**
+	* Create a pixel shader
+	* @param
+	*	const std::string& The pixel shader entry point
+	* @param
+	*	const std::string& The pixel shader filename
+	* @param
+	*	PixelShader* The created pixel shader
+	*/
+	PixelShader* RenderManager::CreatePixelShader(const std::string& entryPoint, const std::string& fileName)
+	{
+		PixelShader* pixelShader = new PixelShader(fileName, entryPoint, _renderSystem->GetRenderDevice());
+		return pixelShader;
 	}
 
 	// TEMP

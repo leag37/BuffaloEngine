@@ -14,10 +14,12 @@ namespace BuffaloEngine
 	// Forward declarations
 	class ConstantBuffer;
 	class IndexBuffer;
+	class PixelShader;
 	class RenderComponent;
 	class RenderSystem;
 	class RenderWindow;
 	class VertexBuffer;
+	class VertexShader;
 
 	/**	\addtogroup Rendering
 	*	@{
@@ -119,6 +121,28 @@ namespace BuffaloEngine
 		*	ConstantBuffer* The created constant buffer
 		*/
 		ConstantBuffer* CreateConstantBuffer();
+
+		/**
+		* Create a vertex shader
+		* @param
+		*	const std::string& The vertex shader entry point
+		* @param
+		*	const std::string& The vertex shader filename
+		* @param
+		*	VertexShader* The created vertex shader
+		*/
+		VertexShader* CreateVertexShader(const std::string& entryPoint, const std::string& fileName);
+
+		/**
+		* Create a pixel shader
+		* @param
+		*	const std::string& The pixel shader entry point
+		* @param
+		*	const std::string& The pixel shader filename
+		* @param
+		*	PixelShader* The created pixel shader
+		*/
+		PixelShader* CreatePixelShader(const std::string& entryPoint, const std::string& fileName);
 
 		// TEMP
 		void SetRenderable(RenderComponent* renderable);

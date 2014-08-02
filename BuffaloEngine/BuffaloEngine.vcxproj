@@ -90,10 +90,12 @@
     <ClInclude Include="Include\Rendering\BuffHardwareBuffer.h" />
     <ClInclude Include="Include\Rendering\BuffHardwareBufferParameter.h" />
     <ClInclude Include="Include\Rendering\BuffIndexBuffer.h" />
+    <ClInclude Include="Include\Rendering\BuffInputLayout.h" />
     <ClInclude Include="Include\Rendering\BuffInputLayoutParameter.h" />
     <ClInclude Include="Include\Rendering\BuffMaterial.h" />
     <ClInclude Include="Include\Rendering\BuffMesh.h" />
     <ClInclude Include="Include\Rendering\BuffMeshSerializer.h" />
+    <ClInclude Include="Include\Rendering\BuffPass.h" />
     <ClInclude Include="Include\Rendering\BuffPixelShader.h" />
     <ClInclude Include="Include\Rendering\BuffRenderComponent.h" />
     <ClInclude Include="Include\Rendering\BuffRenderDevice.h" />
@@ -111,6 +113,7 @@
     <ClInclude Include="Include\Rendering\BuffMaterialReader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Include\Rendering\BuffTechnique.h" />
     <ClCompile Include="Src\Core\BuffApplication.cpp" />
     <ClCompile Include="Src\Core\BuffComponent.cpp" />
     <ClCompile Include="Src\Core\BuffJob.cpp" />
@@ -118,8 +121,10 @@
     <ClCompile Include="Src\Rendering\BuffConstantBuffer.cpp" />
     <ClCompile Include="Src\Rendering\BuffHardwareBuffer.cpp" />
     <ClCompile Include="Src\Rendering\BuffIndexBuffer.cpp" />
+    <ClCompile Include="Src\Rendering\BuffInputLayout.cpp" />
     <ClCompile Include="Src\Rendering\BuffInputLayoutParameter.cpp" />
     <ClCompile Include="Src\Rendering\BuffMaterialReader.cpp" />
+    <ClCompile Include="Src\Rendering\BuffPass.cpp" />
     <ClCompile Include="Src\Rendering\BuffPixelShader.cpp" />
     <ClCompile Include="Src\Rendering\BuffMaterial.cpp" />
     <ClCompile Include="Src\Rendering\BuffMesh.cpp" />
@@ -131,8 +136,11 @@
     <ClCompile Include="Src\Rendering\BuffRenderSystem.cpp" />
     <ClCompile Include="Src\Rendering\BuffRenderWindow.cpp" />
     <ClCompile Include="Src\Rendering\BuffShader.cpp" />
+    <ClCompile Include="Src\Rendering\BuffShaderParameter.cpp" />
+    <ClCompile Include="Src\Rendering\BuffTechnique.cpp" />
     <ClCompile Include="Src\Rendering\BuffVertexBuffer.cpp" />
     <ClCompile Include="Src\Rendering\BuffVertexDescription.cpp" />
+    <ClCompile Include="Src\Rendering\BuffVertexElementSemanticDescription.cpp" />
     <ClCompile Include="Src\Rendering\BuffVertexShader.cpp" />
   </ItemGroup>
   <ItemGroup>

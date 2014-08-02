@@ -4,8 +4,11 @@
 #define __BUFFMATERIAL_H__
 
 #include "Core\BuffPrerequisites.h"
+#include "Rendering\BuffInputLayout.h"
+#include "Rendering\BuffTechnique.h"
 
 #include <string>
+#include <vector>
 
 namespace BuffaloEngine
 {
@@ -57,11 +60,53 @@ namespace BuffaloEngine
 		void SetActive(const RenderDevice& device);
 
 		/**
+		* Get a material technique by index
+		* @param
+		*	uint The technique slot
+		* @return
+		*	const Technique& The technique to set
+		*/
+		const Technique& GetTechniqueByIndex(uint index) const;
+
+		/**
 		* Get the constant buffer
 		* @return
 		*	ConstantBuffer* The constant buffer
 		*/
 		ConstantBuffer* GetConstantBuffer() const;
+
+		/**
+		* Render the frame-targeted portions of this material
+		* @param
+		*	const RenderDevice& The device used to render
+		*/
+		void RenderFrame(const RenderDevice& device);
+
+		/**
+		* Render object-targeted portions of this material
+		* @param
+		*	const RenderDevice& The device used to render
+		*/
+		void RenderObject(const RenderDevice& device);
+
+		// TEMP
+		// Quick and dirty function to update constant buffer parameters
+		template <typename ParamType>
+		void UpdateCBufferParam(const std::string& paramName, ParamType param)
+		{
+			for (uint i = 0; i < _constantBuffers.size(); ++i)
+			{
+				_constantBuffers[i]->UpdateParamByName(paramName, param);
+			}
+		}
+
+	private:
+		/**
+		* Add a constant buffer to the material
+		* @param
+		*	ConstantBuffer* The constant buffer to register with this material
+		*/
+		void AddConstantBuffer(ConstantBuffer* buffer);
 
 	private:
 		/**
@@ -80,14 +125,19 @@ namespace BuffaloEngine
 		PixelShader* _pixelShader;
 
 		/**
-		* Constant buffer
+		* The technique associated with this material
 		*/
-		ConstantBuffer* _constantBuffer;
+		Technique _technique;
+
+		/**
+		* Constant buffer list
+		*/
+		std::vector<ConstantBuffer*> _constantBuffers;
 
 		/**
 		* Input layout
 		*/
-		ID3D11InputLayout* _inputLayout;
+		InputLayout _inputLayout;
 
 		/**
 		* Sampler state

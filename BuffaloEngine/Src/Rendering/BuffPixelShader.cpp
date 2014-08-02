@@ -19,15 +19,16 @@ namespace BuffaloEngine
 	* @param
 	*	const std::string& The name of the shader
 	* @param
+	*	const std::string& The entry point of the shader
+	* @param
 	*	const RenderDevice& The device used to create the shader
 	*/
-	PixelShader::PixelShader(const std::string& name, const RenderDevice& device)
-		:	Shader(name)
+	PixelShader::PixelShader(const std::string& fileName, const std::string& entryPoint, const RenderDevice& device)
+		:	Shader(entryPoint)
 	{
-		std::string fileName = "Resources/Shaders/" + _name + ".hlsl";
-		std::string entryPoint = _name + "PS";
+		std::string filePath = "Resources/Shaders/" + fileName;
 		std::string profile = "ps_5_0";
-		Initialize(fileName, entryPoint, profile, device);
+		Initialize(filePath, entryPoint, profile, device);
 	}
 
 	/**

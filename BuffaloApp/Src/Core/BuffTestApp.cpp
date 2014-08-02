@@ -30,7 +30,7 @@ bool TestApp::InitializeScene()
 	//_camera = _renderManager->CreateCamera();
 
 	// Create a renderable component. Two things are required for any renderable component, mesh name and material name
-	RenderComponent* renderComponent = _renderManager->CreateRenderComponent("tank", "tank", "Basic");
+	RenderComponent* renderComponent = _renderManager->CreateRenderComponent("cube", "cube", "Basic");
 	_renderManager->SetRenderable(renderComponent);
 
 	return true;

@@ -1,5 +1,8 @@
 // Filename: BuffEvent.h
 // Author: Gael Huber
+// TODO: Change events to PoolAlloc<Event<T>>
+// TODO: Events should be templates
+// TODO: Events should inherit from interface IEvent <-- non-template class
 #ifndef __BUFFEVENT_H__
 #define __BUFFEVENT_H__
 

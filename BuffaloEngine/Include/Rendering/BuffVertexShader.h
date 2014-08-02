@@ -23,11 +23,13 @@ namespace BuffaloEngine
 		/**
 		* Constructor
 		* @param
-		*	const std::string& The name of the shader
+		*	const std::string& The file name of the shader
+		* @param
+		*	const std::string& The entry point of the shader
 		* @param
 		*	const RenderDevice& The device used to create the shader
 		*/
-		VertexShader(const std::string& name, const RenderDevice& device);
+		VertexShader(const std::string& fileName, const std::string& entryPoint,  const RenderDevice& device);
 
 		/**
 		* Get a pointer to the shader

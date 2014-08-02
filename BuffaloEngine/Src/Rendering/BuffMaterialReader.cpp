@@ -2,6 +2,8 @@
 // Author: Gael Huber
 #include "Rendering\BuffMaterialReader.h"
 
+#include "Rendering\BuffRenderManager.h"
+
 #include <algorithm>
 
 namespace BuffaloEngine
@@ -146,7 +148,7 @@ namespace BuffaloEngine
 
 		// Creation string
 		std::string str;
-		for (int i = 0; i < line.size(); ++i)
+		for (uint i = 0; i < line.size(); ++i)
 		{
 			if (line[i] == ' ')
 			{
@@ -186,7 +188,7 @@ namespace BuffaloEngine
 		ReadLine(tokens);
 
 		// Input layout description
-		//InputLayout inputLayout;
+		InputLayout inputLayout;
 
 		// Ensure the block is being declared
 		if (IsBlockStart(tokens))
@@ -195,12 +197,33 @@ namespace BuffaloEngine
 			while (IsBlockEnd(tokens) == false)
 			{
 				// Read the input layout parameter and add it to the description
-				//InputLayoutParameter param;
-				//ReadInputLayoutParameter(param);
-				//inputLayout.AddParameter(param);
-			}
-		}
+				InputLayoutParameter param;
+				ReadInputLayoutParameter(param, tokens);
+				inputLayout.AddParameter(param);
 
+				ReadLine(tokens);
+			}
+
+			// Set the input layout for the material
+			_material->_inputLayout = inputLayout;
+		}
+	}
+
+	/**
+	* Read an input layout parameter
+	* @param
+	*	InputLayoutParameter& The input layout parameter to populate
+	* @param
+	*	const std::vector<std::string>& The tokens for this line
+	* @return
+	*	bool Returns true if successful
+	*/
+	bool Material::MaterialReader::ReadInputLayoutParameter(InputLayoutParameter& param, const std::vector<std::string>& tokens)
+	{
+		ShaderParameter shaderParam = ShaderParameter(ShaderParameter::GetParameterType(tokens[0]), tokens[1]);
+		param = InputLayoutParameter(shaderParam, VertexDescription::GetSemanticType(tokens[3]));
+
+		return true;
 	}
 
 	/**
@@ -208,7 +231,7 @@ namespace BuffaloEngine
 	*/
 	void Material::MaterialReader::ReadCBFrameBlock()
 	{
-
+		ReadConstantBuffer(CONSTANT_BUFFER_TYPE_FRAME);
 	}
 
 	/**
@@ -216,7 +239,7 @@ namespace BuffaloEngine
 	*/
 	void Material::MaterialReader::ReadCBMaterialBlock()
 	{
-
+		ReadConstantBuffer(CONSTANT_BUFFER_TYPE_MATERIAL);
 	}
 
 	/**
@@ -224,7 +247,45 @@ namespace BuffaloEngine
 	*/
 	void Material::MaterialReader::ReadCBObjectBlock()
 	{
+		ReadConstantBuffer(CONSTANT_BUFFER_TYPE_OBJECT);
+	}
 
+	/**
+	* Read in configuration for a constant buffer block
+	* @param
+	*	ConstantBufferType The type of buffer to create
+	*/
+	void Material::MaterialReader::ReadConstantBuffer(ConstantBufferType bufferType)
+	{
+		// Read a line
+		std::vector<std::string> tokens;
+		ReadLine(tokens);
+
+		// Ensure the block is being declared
+		if (IsBlockStart(tokens))
+		{
+			// Initialize the constant buffer
+			ConstantBuffer* buffer = RenderManager::GetSingletonPtr()->CreateConstantBuffer();
+
+			// Set the constant buffer type
+			buffer->SetBufferType(bufferType);
+
+			// Read the buffer
+			ReadLine(tokens);
+			while (IsBlockEnd(tokens) == false)
+			{
+				ShaderParameterType type = ShaderParameter::GetParameterType(tokens[0]);
+				if (type != SHADER_PARAMETER_TYPE_UNKNOWN)
+				{
+					ShaderParameter parameter = ShaderParameter(type, tokens[1]);
+					buffer->AddParameter(parameter);
+				}
+				ReadLine(tokens);
+			}
+
+			// Set the constant buffer
+			_material->AddConstantBuffer(buffer);
+		}		
 	}
 
 	/**
@@ -233,7 +294,79 @@ namespace BuffaloEngine
 	*/
 	void Material::MaterialReader::ReadTechniqueBlock()
 	{
+		// Read a line
+		std::vector<std::string> tokens;
+		ReadLine(tokens);
+		
+		if (IsBlockStart(tokens))
+		{
+			// The technique being created
+			Technique technique;
 
+			ReadLine(tokens);
+			while (IsBlockEnd(tokens) == false)
+			{
+				// If the block is a pass block
+				if (tokens.size() > 0)
+				{
+					if (tokens[0] == "pass")
+					{
+						ReadPassBlock(technique);
+					}
+				}
+
+				ReadLine(tokens);
+			}
+
+			// Add the technique to the material
+			_material->_technique = technique;
+		}
+	}
+
+	/**
+	* Read a pass block description. Passes contain information about the particular
+	* rendering pass.
+	* @param
+	*	Technique& The technique to which the pass will be attached
+	*/
+	void Material::MaterialReader::ReadPassBlock(Technique& technique)
+	{
+		// Read a line
+		std::vector<std::string> tokens;
+		ReadLine(tokens);
+
+		if (IsBlockStart(tokens))
+		{
+			// The pass being assembled
+			Pass pass;
+
+			ReadLine(tokens);
+			while (IsBlockEnd(tokens) == false)
+			{
+				// If the block is a pass block
+				if (tokens.size() > 0)
+				{
+					// Process a vertex shader
+					if (tokens[0] == "VertexShader")
+					{
+						// Create a vertex shader with the entry point and filename specified
+						VertexShader* shader = RenderManager::GetSingletonPtr()->CreateVertexShader(tokens[1], tokens[2]);
+						pass.SetVertexShader(shader);
+					}
+					else if (tokens[0] == "PixelShader")
+					{
+						// Create a pixel shader with the entry point and filename specified
+						PixelShader* shader = RenderManager::GetSingletonPtr()->CreatePixelShader(tokens[1], tokens[2]);
+						pass.SetPixelShader(shader);
+					}
+				}
+
+				ReadLine(tokens);
+			}
+
+			// Add the pass to the technique
+			technique.AddPass(pass);
+		}
 	}
 
 }	// Namespace

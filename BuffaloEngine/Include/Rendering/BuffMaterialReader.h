@@ -4,6 +4,7 @@
 #define __BUFFMATERIALREADER_H__
 
 #include "Core\BuffPrerequisites.h"
+#include "Rendering\BuffConstantBuffer.h"
 #include "Rendering\BuffMaterial.h"
 
 #include <fstream>
@@ -11,6 +12,8 @@
 
 namespace BuffaloEngine
 {
+	class Technique;
+
 	/** \addtogroup Rendering
 	*	@{
 	*/
@@ -81,6 +84,17 @@ namespace BuffaloEngine
 		void ReadLayoutBlock();
 
 		/**
+		* Read an input layout parameter
+		* @param
+		*	InputLayoutParameter& The input layout parameter to populate
+		* @param
+		*	const std::vector<std::string>& The tokens for this line
+		* @return
+		*	bool Returns true if successful
+		*/
+		bool ReadInputLayoutParameter(InputLayoutParameter& param, const std::vector<std::string>& tokens);
+
+		/**
 		* Read a constant buffer block for a "per frame" buffer
 		*/
 		void ReadCBFrameBlock();
@@ -96,10 +110,25 @@ namespace BuffaloEngine
 		void ReadCBObjectBlock();
 
 		/**
+		* Read in configuration for a constant buffer block
+		* @param
+		*	ConstantBufferType The type of buffer to create
+		*/
+		void ReadConstantBuffer(ConstantBufferType bufferType);
+
+		/**
 		* Read a technique description. Techniques describe a series of passes that pair
 		* rendering pipeline stages to various shaders
 		*/
 		void ReadTechniqueBlock();
+
+		/**
+		* Read a pass block description. Passes contain information about the particular
+		* rendering pass.
+		* @param
+		*	Technique& The technique to which the pass will be attached
+		*/
+		void ReadPassBlock(Technique& technqiue);
 
 	private:
 		/**

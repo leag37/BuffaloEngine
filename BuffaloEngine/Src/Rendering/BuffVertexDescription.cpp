@@ -116,4 +116,62 @@ namespace BuffaloEngine
 			return 0;
 		}
 	}
+
+	/**
+	* Given a vertex element semantic, return the string representation for the name
+	* @param
+	*	VertexElementSemantic The semantic to name
+	* @return
+	*	std::string The string representation of the semantic
+	*/
+	std::string VertexDescription::GetSemanticName(VertexElementSemantic semantic)
+	{
+		switch (semantic)
+		{
+		case VERTEX_ELEMENT_SEMANTIC_POSITION:
+			return "POSITION";
+
+		case VERTEX_ELEMENT_SEMANTIC_NORMAL:
+			return "NORMAL";
+
+		case VERTEX_ELEMENT_SEMANTIC_TEXCOORD:
+			return "TEXCOORD";
+
+		case VERTEX_ELEMENT_SEMANTIC_COLOR:
+			return "COLOR";
+
+		default:
+			return "";
+		}
+	}
+
+	/**
+	* Given the string representation of this vertex type, get the enum value
+	* @param
+	*	const std::string& The vertex type name
+	* @return
+	*	VertexElementType The type represented by the string
+	*/
+	VertexElementSemantic VertexDescription::GetSemanticType(const std::string& name)
+	{
+		if (name == "POSITION")
+		{
+			return VERTEX_ELEMENT_SEMANTIC_POSITION;
+		}
+		if (name == "NORMAL")
+		{
+			return VERTEX_ELEMENT_SEMANTIC_NORMAL;
+		}
+		if (name == "TEXCOORD")
+		{
+			return VERTEX_ELEMENT_SEMANTIC_TEXCOORD;
+		}
+		if (name == "COLOR")
+		{
+			return VERTEX_ELEMENT_SEMANTIC_COLOR;
+		}
+
+		return VERTEX_ELEMENT_SEMANTIC_UNKNOWN;
+	}
+
 }	// Namespace

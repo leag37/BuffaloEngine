@@ -1,10 +1,17 @@
 // Filename: Basic.hlsl
 // Author: Gael Huber
 
-cbuffer Camera
+cbuffer PerFrame
 {
-	matrix gWorldViewProj;
+	matrix gViewProj;
 };
+
+cbuffer PerObject
+{
+	matrix gWorld;
+};
+
+
 
 // Texture sampling
 Texture2D shaderTexture;
@@ -26,7 +33,9 @@ struct PixelInput
 PixelInput BasicVS(VertexInput input)
 {
 	PixelInput output;
-	output.position = mul(float4(input.position, 1.0f), gWorldViewProj);
+	matrix wvp = mul(gWorld, gViewProj);
+
+	output.position = mul(float4(input.position, 1.0f), wvp);
 	output.texCoord = input.texCoord;
 	return output;
 }
@@ -35,6 +44,7 @@ float4 BasicPS(PixelInput input) : SV_TARGET
 {
 	// Sample the texture
 	float4 textureColor = shaderTexture.Sample(shaderSampler, input.texCoord);
+	return float4(1.0f, 0.0f, 1.0f, 1.0f);
 	return textureColor;
 
 	//return float4(1.0f, 1.0f, 0.0f, 1.0f);

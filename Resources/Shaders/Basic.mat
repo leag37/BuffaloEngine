@@ -5,15 +5,15 @@
 layout
 {
 	Float3 position : POSITION
-	Float3 norm : NORMAL
+	Float3 normal : NORMAL
 	Float2 texCoord : TEXCOORD
 }
 
 # The constant buffer per material
-cbMaterial
-{
-	SamplerState sampler
-}
+#cbMaterial
+#{
+#	SamplerState sampler <-- Sampler state is global
+#}
 
 # The constant buffer per frame
 cbFrame
@@ -25,11 +25,12 @@ cbFrame
 cbObject
 {
 	Matrix gWorld
-	Texture gTexture
+#	Texture gTexture
 }
 
 technique
 {
+# name = basic
 	pass
 	{
 		VertexShader BasicVS Basic.hlsl

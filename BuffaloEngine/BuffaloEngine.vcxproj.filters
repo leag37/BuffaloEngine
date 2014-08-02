@@ -148,6 +148,12 @@
     <ClInclude Include="Include\Rendering\BuffInputLayoutParameter.h">
       <Filter>Rendering\Materials</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffInputLayout.h">
+      <Filter>Rendering\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffPass.h">
+      <Filter>Rendering\Materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Core\BuffApplication.cpp">
@@ -218,6 +224,24 @@
     </ClCompile>
     <ClCompile Include="Src\Rendering\BuffInputLayoutParameter.cpp">
       <Filter>Rendering\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffInputLayout.cpp">
+      <Filter>Rendering\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffShaderParameter.cpp">
+      <Filter>Rendering\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Rendering\BuffTechnique.h">
+      <Filter>Rendering\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffTechnique.cpp">
+      <Filter>Rendering\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffPass.cpp">
+      <Filter>Rendering\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffVertexElementSemanticDescription.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

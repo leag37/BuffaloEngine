@@ -85,13 +85,6 @@ namespace BuffaloEngine
 		context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 		context->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);
 		context->IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);
-
-		ID3D11VertexShader* vShader;
-		ID3D11PixelShader* pShader;
-
-		context->VSGetShader(&vShader, NULL, 0);
-		context->PSGetShader(&pShader, NULL, 0);
-		
 		context->DrawIndexed(_vertexBuffer->GetNumVertices(), 0, 0);
 	}
 
