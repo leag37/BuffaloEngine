@@ -25,7 +25,6 @@ Singleton<Type>::~Singleton()
 	// Delete the singleton
 	if(_instance != 0)
 	{
-		delete _instance;
 		_instance = 0;
 	}
 }

@@ -85,7 +85,7 @@ namespace BuffaloEngine
 	void RenderSystem::BeginScene()
 	{
 		// Clear color
-		float color[4] = {0.0f, 0.0f, 0.0f, 1.0f};
+		float color[4] = {1.0f, 1.0f, 1.0f, 1.0f};
 
 		// Clear the back buffer to black
 		_device.GetImmediateContext()->ClearRenderTargetView(_renderTargetView, color);

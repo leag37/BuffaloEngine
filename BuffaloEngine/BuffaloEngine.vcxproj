@@ -16,7 +16,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
@@ -47,9 +47,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>C:\DirectXTK\Inc;Include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BUFFALOENGINE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\DirectXTK\Bin\Desktop_2013\Win32\Debug;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>DirectXTK.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <AdditionalLibraryDirectories>C:\DirectXTK\Bin\Desktop_2013\Win32\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -77,6 +80,10 @@
     <ClInclude Include="Include\Core\BuffBaseAllocator.h" />
     <ClInclude Include="Include\Core\BuffComponent.h" />
     <ClInclude Include="Include\Core\BuffEvent.h" />
+    <ClInclude Include="Include\Core\BuffEventListener.h" />
+    <ClInclude Include="Include\Core\BuffEventManager.h" />
+    <ClInclude Include="Include\Core\BuffIEventListener.h" />
+    <ClInclude Include="Include\Core\BuffInputEvent.h" />
     <ClInclude Include="Include\Core\BuffJob.h" />
     <ClInclude Include="Include\Core\BuffJobManager.h" />
     <ClInclude Include="Include\Core\BuffMemory.h" />
@@ -113,9 +120,12 @@
     <ClInclude Include="Include\Rendering\BuffMaterialReader.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Include\Rendering\BuffTechnique.h" />
+    <ClInclude Include="Include\Rendering\BuffTechnique.h" />
     <ClCompile Include="Src\Core\BuffApplication.cpp" />
     <ClCompile Include="Src\Core\BuffComponent.cpp" />
+    <ClCompile Include="Src\Core\BuffEvent.cpp" />
+    <ClCompile Include="Src\Core\BuffEventManager.cpp" />
+    <ClCompile Include="Src\Core\BuffInputEvent.cpp" />
     <ClCompile Include="Src\Core\BuffJob.cpp" />
     <ClCompile Include="Src\Core\BuffJobManager.cpp" />
     <ClCompile Include="Src\Rendering\BuffConstantBuffer.cpp" />
@@ -145,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Include\Core\BuffAllocatedClass.inl" />
+    <None Include="Include\Core\BuffEventListener.inl" />
     <None Include="Include\Core\BuffSharedPtr.inl" />
     <None Include="Include\Core\BuffSingleton.inl" />
   </ItemGroup>

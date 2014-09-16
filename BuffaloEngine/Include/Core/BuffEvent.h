@@ -6,7 +6,7 @@
 #ifndef __BUFFEVENT_H__
 #define __BUFFEVENT_H__
 
-#include "BuffPrerequisites.h"
+#include "Core\BuffPrerequisites.h"
 
 namespace BuffaloEngine
 {
@@ -17,21 +17,36 @@ namespace BuffaloEngine
 	/**
 	* A simple event interface
 	*/
-	class Event : public SimpleAlloc
+	class BUFFALOENGINE_API Event : public SimpleAlloc
 	{
 	public:
+		/**
+		 * Default constructor
+		 */
+		explicit Event();
 
 		/**
-		*/
-	protected:
+		 * Destructor
+		 */
+		virtual ~Event();
+
 		/**
-		* The event id
-		*/
-		uint _eventId;
+		 * Get the type id for this event
+		 * @return The type associated with this event
+		 */
+		virtual uint GetEventType() const = 0;
 	};
+
+	// Use this to register event types with the engine.
+	// NOTE: This line needs to be added after every class definition like so:
+	// class MyEvent : public Event
+	// { };
+	// REGISTER_EVENT_TYPE(MyEvent)
+	static uint EventTypeCounter = 0;
+	#define REGISTER_EVENT_TYPE(x) uint x::TYPE = EventTypeCounter++;
 
 	/** @} */
 
 }	// Namespace
 
-#endif // __BUFFIEVENT_H__
+#endif // __BUFFEVENT_H__

@@ -1,4 +1,8 @@
+// Filename: BuffApplication.cpp
+// Author: Gael Huber
 #include "Core/BuffApplication.h"
+
+#include "Core\BuffEventManager.h"
 
 namespace BuffaloEngine
 {
@@ -7,7 +11,8 @@ namespace BuffaloEngine
 	*/
 	Application::Application()
 		:	_jobManager(0),
-			_renderManager(0)
+			_renderManager(0),
+			_eventManager(0)
 	{
 	}
 
@@ -17,6 +22,9 @@ namespace BuffaloEngine
 	*	const Application& The object to copy
 	*/
 	Application::Application(const Application& other)
+		:	_jobManager(other._jobManager),
+			_renderManager(other._renderManager),
+			_eventManager(other._eventManager)
 	{
 	}
 
@@ -37,6 +45,13 @@ namespace BuffaloEngine
 		// Initialize the job system
 		_jobManager = new JobManager();
 		if(_jobManager->Initialize() == false)
+		{
+			return false;
+		}
+
+		// Initialize the event manager
+		_eventManager = new EventManager();
+		if (_eventManager->Initialize() == false)
 		{
 			return false;
 		}
@@ -62,6 +77,10 @@ namespace BuffaloEngine
 	*/
 	void Application::Shutdown()
 	{
+		// Shutdown the various subsystems
+		SafeShutdown(_renderManager);
+		SafeShutdown(_eventManager);
+		SafeShutdown(_jobManager);
 	}
 
 	/**

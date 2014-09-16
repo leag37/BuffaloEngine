@@ -13,10 +13,12 @@ namespace BuffaloEngine
 	*	@{
 	*/
 
+	class EventManager;
+
 	/**
 	* The base for building applications. This class acts as the root for engine functionality.
 	*/
-	class Application : public SimpleAlloc
+	class BUFFALOENGINE_API Application : public SimpleAlloc
 	{
 	public:
 		/**
@@ -82,7 +84,10 @@ namespace BuffaloEngine
 		*/
 		RenderManager* _renderManager;
 		
-		
+		/**
+		 * Event manager
+		 */
+		EventManager* _eventManager;
 	};
 
 	/** @} */

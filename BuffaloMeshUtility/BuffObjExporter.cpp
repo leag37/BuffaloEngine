@@ -108,19 +108,20 @@ namespace BuffaloEngine
 			vertexSize += 2;
 		}
 
-		std::vector<float> vertices = std::vector<float>(posCount * vertexSize, FLT_MAX);
+		std::vector<float> vertices = std::vector<float>(faceCount * vertexSize * 3, FLT_MAX);
 
 		// Create the file header
-		MeshFileHeader fileHeader = 
+		MeshFileHeader fileHeader =
 		{
 			'b', 'e',
-			posCount,
+			faceCount * 3,
 			vertexElements,
 			faceCount * 3
 		};
 
 		// Reset counts
 		posCount = normCount = texCount = faceCount = 0;
+		int vertexCount = 0;
 
 		// Read vertex data
 		iFile.get(data);
@@ -178,24 +179,21 @@ namespace BuffaloEngine
 					--in;
 
 					// Check if the index at ip current exists
-					int index = ip * vertexSize;
-					if(vertices[index] == FLT_MAX)
-					{
-						// The vertex data does not exist, fill the vertex element with the appropriate data
-						vertices[index + 0] = vertexPos[ip * 3];
-						vertices[index + 1] = vertexPos[ip * 3 + 1];
-						vertices[index + 2] = vertexPos[ip * 3 + 2];
+					int index = vertexCount++ * vertexSize;
+					// The vertex data does not exist, fill the vertex element with the appropriate data
+					vertices[index + 0] = vertexPos[ip * 3];
+					vertices[index + 1] = vertexPos[ip * 3 + 1];
+					vertices[index + 2] = vertexPos[ip * 3 + 2];
 					
-						vertices[index + 3] = vertexNorm[in * 3];
-						vertices[index + 4] = vertexNorm[in * 3 + 1];
-						vertices[index + 5] = vertexNorm[in * 3 + 2];
+					vertices[index + 3] = vertexNorm[in * 3];
+					vertices[index + 4] = vertexNorm[in * 3 + 1];
+					vertices[index + 5] = vertexNorm[in * 3 + 2];
 
-						vertices[index + 6] = texCoords[it * 2];
-						vertices[index + 7] = texCoords[it * 2 + 1];
-					}
+					vertices[index + 6] = texCoords[it * 2];
+					vertices[index + 7] = texCoords[it * 2 + 1];
 
 					// Set the index value
-					indices[faceCount++] = ip;
+					indices[faceCount] = faceCount++;
 				}
 			}
 

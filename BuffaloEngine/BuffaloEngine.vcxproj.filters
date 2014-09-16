@@ -35,6 +35,9 @@
     <Filter Include="Rendering\Materials">
       <UniqueIdentifier>{d7c981ea-f450-4eb0-a4d6-d6a7e78716bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Input">
+      <UniqueIdentifier>{824cb3c3-90d5-4316-bd7a-b58e7e7af87c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Core\BuffApplication.h">
@@ -87,9 +90,6 @@
     </ClInclude>
     <ClInclude Include="Include\Entities\BuffEntity.h">
       <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Core\BuffEvent.h">
-      <Filter>Core\Events</Filter>
     </ClInclude>
     <ClInclude Include="Include\Rendering\BuffCamera.h">
       <Filter>Rendering</Filter>
@@ -153,6 +153,24 @@
     </ClInclude>
     <ClInclude Include="Include\Rendering\BuffPass.h">
       <Filter>Rendering\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffTechnique.h">
+      <Filter>Rendering\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\BuffInputEvent.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\BuffEventManager.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\BuffEvent.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\BuffIEventListener.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\BuffEventListener.h">
+      <Filter>Core\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -231,9 +249,6 @@
     <ClCompile Include="Src\Rendering\BuffShaderParameter.cpp">
       <Filter>Rendering\Materials</Filter>
     </ClCompile>
-    <ClCompile Include="Include\Rendering\BuffTechnique.h">
-      <Filter>Rendering\Materials</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Rendering\BuffTechnique.cpp">
       <Filter>Rendering\Materials</Filter>
     </ClCompile>
@@ -242,6 +257,15 @@
     </ClCompile>
     <ClCompile Include="Src\Rendering\BuffVertexElementSemanticDescription.cpp">
       <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\BuffEvent.cpp">
+      <Filter>Core\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\BuffInputEvent.cpp">
+      <Filter>Core\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\BuffEventManager.cpp">
+      <Filter>Core\Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +277,9 @@
     </None>
     <None Include="Include\Core\BuffSharedPtr.inl">
       <Filter>Core</Filter>
+    </None>
+    <None Include="Include\Core\BuffEventListener.inl">
+      <Filter>Core\Events</Filter>
     </None>
   </ItemGroup>
 </Project>

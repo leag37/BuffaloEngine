@@ -28,7 +28,7 @@ namespace BuffaloEngine
 	/**
 	* Render manager controls all aspects of rendering owns all aspects of rendering, both 2D and 3D pipelines.
 	*/
-	class RenderManager : public Singleton<RenderManager>, public SimpleAlloc
+	class BUFFALOENGINE_API RenderManager : public Singleton<RenderManager>, public SimpleAlloc
 	{
 	public:
 		/**

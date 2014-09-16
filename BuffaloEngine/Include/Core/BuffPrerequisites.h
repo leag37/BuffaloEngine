@@ -26,6 +26,12 @@
 #include <D3Dcompiler.h>
 #include <D3Dcommon.h>
 
+#ifdef BUFFALOENGINE_EXPORTS
+#define BUFFALOENGINE_API __declspec(dllexport) 
+#else
+#define BUFFALOENGINE_API __declspec(dllimport) 
+#endif
+
 namespace BuffaloEngine
 {
 	/** \addtogroup Core
@@ -39,6 +45,17 @@ namespace BuffaloEngine
 	typedef __int64 int64;
 	typedef unsigned __int64 uint64;
 	typedef __m128 vect;
+
+	//*************************
+	// Safe Shutdown Mechanism
+	//*************************
+#	define SafeShutdown(x)	\
+	if(x)					\
+	{						\
+		x->Shutdown();		\
+		delete x;			\
+		x = 0;				\
+	}						\
 
 	/** @} */
 

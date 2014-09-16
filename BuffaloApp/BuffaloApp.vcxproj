@@ -75,7 +75,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\DirectXTK\Bin\Desktop_2013\Win32\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>DirectXTK.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -121,12 +121,17 @@
     <ClCompile Include="Src\Core\BuffTestApp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BuffaloEngine\BuffaloEngine.vcxproj">
-      <Project>{c5b93117-c76b-40a0-bc97-aa7a315f16ea}</Project>
-    </ProjectReference>
+    <ClInclude Include="include\core\BuffTestApp.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\core\BuffTestApp.h" />
+    <ProjectReference Include="..\BuffaloEngine\BuffaloEngine.vcxproj">
+      <Project>{c5b93117-c76b-40a0-bc97-aa7a315f16ea}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

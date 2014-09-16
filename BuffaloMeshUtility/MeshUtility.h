@@ -105,14 +105,14 @@ namespace BuffaloMeshUtility {
 			this->txtInputFile->Location = System::Drawing::Point(12, 25);
 			this->txtInputFile->Name = L"txtInputFile";
 			this->txtInputFile->Size = System::Drawing::Size(197, 20);
-			this->txtInputFile->TabIndex = 2;
+			this->txtInputFile->TabIndex = 0;
 			// 
 			// btnExport
 			// 
 			this->btnExport->Location = System::Drawing::Point(81, 137);
 			this->btnExport->Name = L"btnExport";
 			this->btnExport->Size = System::Drawing::Size(75, 23);
-			this->btnExport->TabIndex = 3;
+			this->btnExport->TabIndex = 4;
 			this->btnExport->Text = L"Export";
 			this->btnExport->UseVisualStyleBackColor = true;
 			this->btnExport->Click += gcnew System::EventHandler(this, &MeshUtility::OnExportClick);
@@ -122,14 +122,14 @@ namespace BuffaloMeshUtility {
 			this->txtOutputFile->Location = System::Drawing::Point(12, 89);
 			this->txtOutputFile->Name = L"txtOutputFile";
 			this->txtOutputFile->Size = System::Drawing::Size(197, 20);
-			this->txtOutputFile->TabIndex = 6;
+			this->txtOutputFile->TabIndex = 2;
 			// 
 			// btnOutputFile
 			// 
 			this->btnOutputFile->Location = System::Drawing::Point(215, 89);
 			this->btnOutputFile->Name = L"btnOutputFile";
 			this->btnOutputFile->Size = System::Drawing::Size(24, 21);
-			this->btnOutputFile->TabIndex = 5;
+			this->btnOutputFile->TabIndex = 3;
 			this->btnOutputFile->Text = L"...";
 			this->btnOutputFile->UseVisualStyleBackColor = true;
 			this->btnOutputFile->Click += gcnew System::EventHandler(this, &MeshUtility::OnOutputClick);

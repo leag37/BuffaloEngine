@@ -12,8 +12,6 @@
 
 namespace BuffaloEngine
 {
-	class Technique;
-
 	/** \addtogroup Rendering
 	*	@{
 	*/

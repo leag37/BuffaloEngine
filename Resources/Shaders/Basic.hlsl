@@ -44,7 +44,7 @@ float4 BasicPS(PixelInput input) : SV_TARGET
 {
 	// Sample the texture
 	float4 textureColor = shaderTexture.Sample(shaderSampler, input.texCoord);
-	return float4(1.0f, 0.0f, 1.0f, 1.0f);
+	//return float4(1.0f, 0.0f, 1.0f, 1.0f);
 	return textureColor;
 
 	//return float4(1.0f, 1.0f, 0.0f, 1.0f);

@@ -48,6 +48,7 @@ namespace BuffaloEngine
 
 		// Read in the mesh file header
 		MeshFileHeader header;
+		uint blah = sizeof(MeshFileHeader);
 		file.read((char*)&header, sizeof(MeshFileHeader));
 
 		// Check for valid signature
@@ -69,7 +70,7 @@ namespace BuffaloEngine
 
 		// Read in vertex data
 		std::vector<float> vertexData = std::vector<float>(header.vertexCount * vertexDescription.GetVertexSize() / sizeof(float));
-		file.read((char*)&vertexData[0], vertexData.capacity());
+		file.read((char*)&vertexData[0], vertexData.capacity() * sizeof(float));
 
 		// Create a vertex buffer
 		VertexBuffer* vertexBuffer = RenderManager::GetSingletonPtr()->CreateVertexBuffer();
@@ -80,8 +81,8 @@ namespace BuffaloEngine
 		mesh->_vertexBuffer = vertexBuffer;
 
 		// Read in index data
-		std::vector<int> indexData = std::vector<int>(header.indexCount * sizeof(int));
-		file.read((char*)&indexData[0], indexData.capacity());
+		std::vector<int> indexData = std::vector<int>(header.indexCount);
+		file.read((char*)&indexData[0], indexData.capacity() * sizeof(int));
 
 		// Create an index buffer
 		IndexBuffer* indexBuffer = RenderManager::GetSingletonPtr()->CreateIndexBuffer();

@@ -4,6 +4,7 @@
 #define __BUFFTESTAPP_H__
 
 #include "Core\BuffApplication.h"
+#include "Core\BuffEvent.h"
 
 using namespace BuffaloEngine;
 
@@ -32,6 +33,9 @@ protected:
 	*	bool Return true if the scene is initialized successfully
 	*/
 	bool InitializeScene();
+
+	// TEMP
+	void OnInputEvent(const Event* evt);
 
 private:
 	/**
