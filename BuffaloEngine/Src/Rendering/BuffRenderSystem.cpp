@@ -72,6 +72,10 @@ namespace BuffaloEngine
 		_position.y = 0.0f;
 		_position.z = -10.0f;
 
+		_rotation.x = 0.0f;
+		_rotation.y = 0.0f;
+		_rotation.z = 0.0f;
+
 		_eventListener = EventListener<RenderSystem>(this);
 		_eventListener.AddEventListener(InputEvent::TYPE, &RenderSystem::OnMove);
 
@@ -136,7 +140,7 @@ namespace BuffaloEngine
 		lookAt = DirectX::XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
 
 		// Create the rotation matrix from the yaw, pitch, and roll values.
-		rotationMatrix = DirectX::XMMatrixRotationRollPitchYaw(0.0f, 0.0f, 0.0f);
+		rotationMatrix = DirectX::XMMatrixRotationRollPitchYaw(_rotation.x, _rotation.y, _rotation.z);
 
 		// Transform the lookAt and up vector by the rotation matrix so the view is correctly rotated at the origin.
 		lookAt = DirectX::XMVector3TransformCoord(lookAt, rotationMatrix);
@@ -519,6 +523,24 @@ namespace BuffaloEngine
 		if (iEvt->GetAction() == IAT_FORWARD)
 		{
 			_position.z += 0.001f;
+		}
+		else if (iEvt->GetAction() == IAT_BACKWARD)
+		{
+			_position.z -= 0.001f;
+		}
+		else if (iEvt->GetAction() == IAT_STRAFE_LEFT)
+		{
+			_position.x -= 0.001f;
+		}
+		else if (iEvt->GetAction() == IAT_STRAFE_RIGHT)
+		{
+			_position.x += 0.001f;
+		}
+		else if (iEvt->GetAction() == IAT_TURN)
+		{
+			_rotation.x += iEvt->GetX();
+			_rotation.y += iEvt->GetY();
+			_rotation.z += iEvt->GetZ();
 		}
 	}
 

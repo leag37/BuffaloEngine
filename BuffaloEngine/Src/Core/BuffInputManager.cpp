@@ -63,6 +63,23 @@ namespace BuffaloEngine
 			return false;
 		}
 
+		// Create the connection to the mouse
+		fDI->CreateDevice(GUID_SysMouse, &fDIMouse, NULL);
+		if (fDIMouse)
+		{
+			fDIMouse->SetDataFormat(&c_dfDIMouse);
+			fDIMouse->SetCooperativeLevel(
+				RenderManager::GetSingletonPtr()->GetRenderWindow()->GetHWND(),
+				DISCL_FOREGROUND | DISCL_EXCLUSIVE
+				);
+			fDIMouse->Acquire();
+		}
+		else
+		{
+			MessageBox(NULL, "DirectInput Mouse Initialization Failed!", "Error", 0);
+			return false;
+		}
+
 		return true;
 	}
 
@@ -98,16 +115,55 @@ namespace BuffaloEngine
 	*/
 	bool InputManager::Update()
 	{
+		// Keyboard
 		char keyboardState[256];
 		HRESULT result = fDIKeyboard->GetDeviceState(sizeof(keyboardState), (LPVOID)&keyboardState);
 		if (FAILED(result))
 		{
 			fDIKeyboard->Acquire();
 		}
-
-		if (keyboardState[DIK_W] & 0x80)
+		else
 		{
-			EventManager::GetSingletonPtr()->DispatchEvent(new InputEvent(IAT_FORWARD));
+			if (keyboardState[DIK_W] & 0x80)
+			{
+				EventManager::GetSingletonPtr()->DispatchEvent(new InputEvent(IAT_FORWARD));
+			}
+			if (keyboardState[DIK_A] & 0x80)
+			{
+				EventManager::GetSingletonPtr()->DispatchEvent(new InputEvent(IAT_STRAFE_LEFT));
+			}
+			if (keyboardState[DIK_D] & 0x80)
+			{
+				EventManager::GetSingletonPtr()->DispatchEvent(new InputEvent(IAT_STRAFE_RIGHT));
+			}
+			if (keyboardState[DIK_S] & 0x80)
+			{
+				EventManager::GetSingletonPtr()->DispatchEvent(new InputEvent(IAT_BACKWARD));
+			}
+		}
+		
+		// Mouse
+		DIMOUSESTATE mouseState;
+		ZeroMemory(&mouseState, sizeof(mouseState));
+		result = fDIMouse->GetDeviceState(sizeof(DIMOUSESTATE), &mouseState);
+		if (FAILED(result))
+		{
+			fDIMouse->Acquire();
+		}
+		else
+		{
+			// Get the x,y,z components as percentages floats
+			float x = static_cast<float>(mouseState.lX);
+			float y = static_cast<float>(mouseState.lY);
+			float z = static_cast<float>(mouseState.lZ);
+			x *= 0.001f;
+			y *= 0.001f;
+
+			EventManager::GetSingletonPtr()->DispatchEvent(new InputEvent(IAT_TURN, y, x, 0));
+			
+			//mouseState.rgbButtons
+			//DIMOFS_BUTTON0
+
 		}
 
 		return true;

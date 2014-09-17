@@ -14,9 +14,12 @@ namespace BuffaloEngine
 	* Constructor
 	* @param action The input action
 	*/
-	InputEvent::InputEvent(InputActionType action)
+	InputEvent::InputEvent(InputActionType action, float x, float y, float z)
 		: Event(),
-		_action(action)
+		_action(action),
+		_x(x),
+		_y(y),
+		_z(z)
 	{
 
 	}

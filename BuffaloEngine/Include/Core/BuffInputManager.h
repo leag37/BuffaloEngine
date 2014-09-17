@@ -62,6 +62,7 @@ namespace BuffaloEngine
 	private:
 		LPDIRECTINPUT8 fDI;
 		LPDIRECTINPUTDEVICE8 fDIKeyboard;
+		LPDIRECTINPUTDEVICE8 fDIMouse;
 	};
 
 	/** @} */

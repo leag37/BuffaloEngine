@@ -174,6 +174,7 @@ namespace BuffaloEngine
 		EventListener<RenderSystem> _eventListener;
 
 		DirectX::XMFLOAT3 _position;
+		DirectX::XMFLOAT3 _rotation;
 	};
 
 	/** @} */
