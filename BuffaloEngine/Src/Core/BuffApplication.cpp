@@ -1,8 +1,13 @@
 // Filename: BuffApplication.cpp
 // Author: Gael Huber
-#include "Core/BuffApplication.h"
+#include "Core\BuffApplication.h"
 
 #include "Core\BuffEventManager.h"
+#include "Core\BuffInputManager.h"
+#include "Core\BuffJobManager.h"
+#include "Rendering\BuffRenderManager.h"
+
+#include <iostream>
 
 namespace BuffaloEngine
 {
@@ -12,7 +17,8 @@ namespace BuffaloEngine
 	Application::Application()
 		:	_jobManager(0),
 			_renderManager(0),
-			_eventManager(0)
+			_eventManager(0),
+			_inputManager(0)
 	{
 	}
 
@@ -24,7 +30,8 @@ namespace BuffaloEngine
 	Application::Application(const Application& other)
 		:	_jobManager(other._jobManager),
 			_renderManager(other._renderManager),
-			_eventManager(other._eventManager)
+			_eventManager(other._eventManager),
+			_inputManager(other._inputManager)
 	{
 	}
 
@@ -63,6 +70,13 @@ namespace BuffaloEngine
 			return false;
 		}
 
+		// Input manager
+		_inputManager = new InputManager();
+		if (_inputManager->Initialize() == false)
+		{
+			return false;
+		}
+
 		// All systems are initialized, so create our scene
 		if(InitializeScene() == false)
 		{
@@ -78,6 +92,7 @@ namespace BuffaloEngine
 	void Application::Shutdown()
 	{
 		// Shutdown the various subsystems
+		SafeShutdown(_inputManager);
 		SafeShutdown(_renderManager);
 		SafeShutdown(_eventManager);
 		SafeShutdown(_jobManager);
@@ -95,7 +110,7 @@ namespace BuffaloEngine
 		{
 			return false;
 		}
-
+		
 		// Main loop
 		MSG msg;
 		bool canRun = true;
@@ -103,8 +118,21 @@ namespace BuffaloEngine
 		// Create various jobs for main render loops
 		//RenderUpdateJob renderUpdateJob;
 
+		DWORD lastTime = timeGetTime();
+		DWORD frames = 0;
+
 		while(canRun)
 		{
+			const DWORD currentTime = timeGetTime();
+			const DWORD timeSinceLast = currentTime - lastTime;
+			++frames;
+			if (timeSinceLast > 1000)
+			{
+				lastTime = currentTime - (timeSinceLast - 1000);
+				std::cout << "Frames: " << frames << std::endl;
+				frames = 0;
+			}
+
 			// Windows message pump
 			if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 			{
@@ -129,6 +157,11 @@ namespace BuffaloEngine
 
 			// Update rendering
 			if(_renderManager->Update() == false)
+			{
+				canRun = false;
+			}
+
+			if (_inputManager->Update() == false)
 			{
 				canRun = false;
 			}

@@ -2,9 +2,8 @@
 // Author: Gael Huber
 #include "Core\BuffTestApp.h"
 
-#include "Core\BuffEventListener.h"
-#include "Core\BuffInputEvent.h"
-#include "Core\BuffEventManager.h"
+#include "Rendering\BuffRenderManager.h"
+#include "Rendering\BuffRenderComponent.h"
 
 /**
 * Default constructor
@@ -30,14 +29,6 @@ bool TestApp::Update()
 */
 bool TestApp::InitializeScene()
 {
-	EventListener<TestApp> listener = EventListener<TestApp>(this);
-	listener.AddEventListener(InputEvent::TYPE, &TestApp::OnInputEvent);
-	InputEvent* ie = new BuffaloEngine::InputEvent();
-	ie->a = 2;
-	EventManager::GetSingletonPtr()->DispatchEvent(ie);
-	listener.Dequeue();
-
-
 	// Create a camera
 	//_camera = _renderManager->CreateCamera();
 
@@ -46,12 +37,4 @@ bool TestApp::InitializeScene()
 	_renderManager->SetRenderable(renderComponent);
 
 	return true;
-}
-
-// TEMP
-void TestApp::OnInputEvent(const Event* evt)
-{
-	const InputEvent* iEvt = dynamic_cast<const InputEvent*>(evt);
-	int a = iEvt->a;
-	int b = a + 1;
 }

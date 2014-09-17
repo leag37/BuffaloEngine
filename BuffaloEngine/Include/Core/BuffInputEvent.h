@@ -16,6 +16,14 @@ namespace BuffaloEngine
 	*/
 
 	/**
+	 * Enum describing input event actions
+	 */
+	enum InputActionType
+	{
+		IAT_FORWARD		// Forward motion
+	};
+
+	/**
 	* A simple event interface
 	*/
 	class BUFFALOENGINE_API InputEvent : public Event
@@ -23,9 +31,9 @@ namespace BuffaloEngine
 	public:
 		/**
 		* Constructor
-		* @param eventId The event id associated with this event
+		* @param action The input action
 		*/
-		explicit InputEvent();
+		explicit InputEvent(InputActionType action);
 
 		/**
 		* Destructor
@@ -38,13 +46,23 @@ namespace BuffaloEngine
 		*/
 		virtual uint GetEventType() const;
 
-		int a;
+		/**
+		 * Get the action type tied to this event
+		 * @return The input action
+		 */
+		InputActionType GetAction() const;
 
 	public:
 		/**
 		 * The event type
 		 */
 		static uint TYPE;
+
+	private:
+		/**
+		 * The input action type
+		 */
+		InputActionType _action;
 	};
 
 	/** @} */

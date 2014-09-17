@@ -67,6 +67,13 @@ namespace BuffaloEngine
 		{
 			return false;
 		}
+		
+		_position.x = 0.0f;
+		_position.y = 0.0f;
+		_position.z = -10.0f;
+
+		_eventListener = EventListener<RenderSystem>(this);
+		_eventListener.AddEventListener(InputEvent::TYPE, &RenderSystem::OnMove);
 
 		return true;
 	}
@@ -84,6 +91,12 @@ namespace BuffaloEngine
 	*/
 	void RenderSystem::BeginScene()
 	{
+		// Poll events
+		while (_eventListener.Peek()) 
+		{
+			_eventListener.Dequeue();
+		}
+
 		// Clear color
 		float color[4] = {1.0f, 1.0f, 1.0f, 1.0f};
 
@@ -117,7 +130,7 @@ namespace BuffaloEngine
 		up = DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 		
 		// Setup the position of the camera in the world.
-		position = DirectX::XMVectorSet(0.0f, 0.0f, -10.0f, 0.0f);
+		position = DirectX::XMLoadFloat3(&_position);// DirectX::XMVectorSet(0.0f, 0.0f, -10.0f, 0.0f);
 
 		// Setup where the camera is looking by default.
 		lookAt = DirectX::XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
@@ -498,6 +511,15 @@ namespace BuffaloEngine
 		_device.GetImmediateContext()->RSSetViewports(1, &viewport);
 
 		return true;
+	}
+
+	void RenderSystem::OnMove(const Event* evt)
+	{
+		const InputEvent* iEvt = dynamic_cast<const InputEvent*>(evt);
+		if (iEvt->GetAction() == IAT_FORWARD)
+		{
+			_position.z += 0.001f;
+		}
 	}
 
 }	// Namespace

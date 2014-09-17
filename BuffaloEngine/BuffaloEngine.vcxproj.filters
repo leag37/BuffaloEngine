@@ -172,6 +172,12 @@
     <ClInclude Include="Include\Core\BuffEventListener.h">
       <Filter>Core\Events</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Core\BuffInputManager.h">
+      <Filter>Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\BuffClassDirectory.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Core\BuffApplication.cpp">
@@ -265,6 +271,12 @@
       <Filter>Core\Events</Filter>
     </ClCompile>
     <ClCompile Include="Src\Core\BuffEventManager.cpp">
+      <Filter>Core\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\BuffInputManager.cpp">
+      <Filter>Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\BuffIEventListener.cpp">
       <Filter>Core\Events</Filter>
     </ClCompile>
   </ItemGroup>
