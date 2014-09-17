@@ -26,6 +26,8 @@
 #include <D3Dcompiler.h>
 #include <D3Dcommon.h>
 
+#include "BuffClassDirectory.h"
+
 #ifdef BUFFALOENGINE_EXPORTS
 #define BUFFALOENGINE_API __declspec(dllexport) 
 #else

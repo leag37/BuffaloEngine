@@ -3,16 +3,14 @@
 #ifndef __BUFFEVENTMANAGER_H__
 #define __BUFFEVENTMANAGER_H__
 
-#include "Core/BuffPrerequisites.h"
-#include "Core/BuffSingleton.h"
+#include "Core\BuffPrerequisites.h"
+#include "Core\BuffSingleton.h"
 
 #include <unordered_map>
 #include <vector>
 
 namespace BuffaloEngine
 {
-	class Event;
-	class IEventListener;
 
 	/** \addtogroup Core
 	 *	@{

@@ -25,11 +25,11 @@ namespace BuffaloEngine
 	{
 		// Create mesh
 		_mesh = new Mesh(meshName);
-
+		
 		// Create the material
 		_material = new Material(materialName);
 		_material->Initialize(device);
-
+		
 		// Create the texture
 		HRESULT result = DirectX::CreateWICTextureFromFile(_device.GetD3DDevice(), L"Resources/Textures/tank.jpg", NULL, &_texture);
 	}

@@ -4,8 +4,6 @@
 #define __BUFFAPPLICATION_H__
 
 #include "Core\BuffPrerequisites.h"
-#include "Core\BuffJobManager.h"
-#include "Rendering\BuffRenderManager.h"
 
 namespace BuffaloEngine
 {
@@ -14,6 +12,9 @@ namespace BuffaloEngine
 	*/
 
 	class EventManager;
+	class InputManager;
+	class JobManager;
+	class RenderManager;
 
 	/**
 	* The base for building applications. This class acts as the root for engine functionality.
@@ -88,6 +89,11 @@ namespace BuffaloEngine
 		 * Event manager
 		 */
 		EventManager* _eventManager;
+
+		/**
+		 * Input manager
+		 */
+		InputManager* _inputManager;
 	};
 
 	/** @} */

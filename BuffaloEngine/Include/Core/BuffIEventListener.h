@@ -13,12 +13,10 @@ namespace BuffaloEngine
 	*	@{
 	*/
 
-	class Event;
-
 	/**
 	* Defines the interface for top-level interaction with event listener
 	*/
-	class IEventListener : public SimpleAlloc
+	class BUFFALOENGINE_API IEventListener : public SimpleAlloc
 	{
 	public:
 		/**
@@ -43,6 +41,11 @@ namespace BuffaloEngine
 		 */
 		virtual bool Dequeue() = 0;
 
+		/**
+		* Peek at the events queue to determine if there is an event
+		*/
+		bool Peek();
+
 	protected:
 		/**
 		 * The event queue
@@ -50,22 +53,6 @@ namespace BuffaloEngine
 		std::queue<const Event*> _eventQueue;
 	};
 	
-	/**
-	* Default constructor
-	*/
-	IEventListener::IEventListener()
-	{
-
-	}
-
-	/**
-	* Destructor
-	*/
-	IEventListener::~IEventListener()
-	{
-
-	}
-
 	/** @} */
 }
 

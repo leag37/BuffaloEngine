@@ -67,6 +67,17 @@ namespace BuffaloEngine
 		{
 			return false;
 		}
+		
+		_position.x = 0.0f;
+		_position.y = 0.0f;
+		_position.z = -10.0f;
+
+		_rotation.x = 0.0f;
+		_rotation.y = 0.0f;
+		_rotation.z = 0.0f;
+
+		_eventListener = EventListener<RenderSystem>(this);
+		_eventListener.AddEventListener(InputEvent::TYPE, &RenderSystem::OnMove);
 
 		return true;
 	}
@@ -84,6 +95,12 @@ namespace BuffaloEngine
 	*/
 	void RenderSystem::BeginScene()
 	{
+		// Poll events
+		while (_eventListener.Peek()) 
+		{
+			_eventListener.Dequeue();
+		}
+
 		// Clear color
 		float color[4] = {1.0f, 1.0f, 1.0f, 1.0f};
 
@@ -117,13 +134,13 @@ namespace BuffaloEngine
 		up = DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 		
 		// Setup the position of the camera in the world.
-		position = DirectX::XMVectorSet(0.0f, 0.0f, -10.0f, 0.0f);
+		position = DirectX::XMLoadFloat3(&_position);// DirectX::XMVectorSet(0.0f, 0.0f, -10.0f, 0.0f);
 
 		// Setup where the camera is looking by default.
 		lookAt = DirectX::XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
 
 		// Create the rotation matrix from the yaw, pitch, and roll values.
-		rotationMatrix = DirectX::XMMatrixRotationRollPitchYaw(0.0f, 0.0f, 0.0f);
+		rotationMatrix = DirectX::XMMatrixRotationRollPitchYaw(_rotation.x, _rotation.y, _rotation.z);
 
 		// Transform the lookAt and up vector by the rotation matrix so the view is correctly rotated at the origin.
 		lookAt = DirectX::XMVector3TransformCoord(lookAt, rotationMatrix);
@@ -498,6 +515,33 @@ namespace BuffaloEngine
 		_device.GetImmediateContext()->RSSetViewports(1, &viewport);
 
 		return true;
+	}
+
+	void RenderSystem::OnMove(const Event* evt)
+	{
+		const InputEvent* iEvt = dynamic_cast<const InputEvent*>(evt);
+		if (iEvt->GetAction() == IAT_FORWARD)
+		{
+			_position.z += 0.001f;
+		}
+		else if (iEvt->GetAction() == IAT_BACKWARD)
+		{
+			_position.z -= 0.001f;
+		}
+		else if (iEvt->GetAction() == IAT_STRAFE_LEFT)
+		{
+			_position.x -= 0.001f;
+		}
+		else if (iEvt->GetAction() == IAT_STRAFE_RIGHT)
+		{
+			_position.x += 0.001f;
+		}
+		else if (iEvt->GetAction() == IAT_TURN)
+		{
+			_rotation.x += iEvt->GetX();
+			_rotation.y += iEvt->GetY();
+			_rotation.z += iEvt->GetZ();
+		}
 	}
 
 }	// Namespace

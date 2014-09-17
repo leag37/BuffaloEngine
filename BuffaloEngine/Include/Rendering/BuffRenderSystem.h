@@ -6,16 +6,21 @@
 #include "Core\BuffPrerequisites.h"
 #include "BuffRenderDevice.h"
 #include "BuffRenderDeviceDriver.h"
+#include "Core\BuffEventListener.h"
+#include "Core\BuffInputEvent.h"
 
 #include <vector>
 
 namespace BuffaloEngine
 {
-	class RenderComponent;
-
 	/** \addtogroup Rendering
 	*	@{
 	*/
+
+	/**
+	 * Forward declare event listener type
+	 */
+	template class EventListener<RenderSystem>;
 
 	/**
 	* This class owns the render system devices and information descriptions
@@ -120,6 +125,8 @@ namespace BuffaloEngine
 		*/
 		bool CreateViewport();
 
+		void OnMove(const Event* evt);
+
 	private:
 		/**
 		* Render device
@@ -160,6 +167,14 @@ namespace BuffaloEngine
 		* List of available device drivers
 		*/
 		std::vector<RenderDeviceDriver> _availableDrivers;
+
+		/**
+		 * Event listener
+		 */
+		EventListener<RenderSystem> _eventListener;
+
+		DirectX::XMFLOAT3 _position;
+		DirectX::XMFLOAT3 _rotation;
 	};
 
 	/** @} */

@@ -9,12 +9,17 @@ namespace BuffaloEngine
 	 */
 	REGISTER_EVENT_TYPE(InputEvent)
 
+	
 	/**
 	* Constructor
-	* @param eventId The event id associated with this event
+	* @param action The input action
 	*/
-	InputEvent::InputEvent()
-		: Event()
+	InputEvent::InputEvent(InputActionType action, float x, float y, float z)
+		: Event(),
+		_action(action),
+		_x(x),
+		_y(y),
+		_z(z)
 	{
 
 	}
@@ -34,6 +39,15 @@ namespace BuffaloEngine
 	uint InputEvent::GetEventType() const
 	{
 		return InputEvent::TYPE;
+	}
+
+	/**
+	* Get the action type tied to this event
+	* @return The input action
+	*/
+	InputActionType InputEvent::GetAction() const
+	{
+		return _action;
 	}
 
 }	// Namespace
