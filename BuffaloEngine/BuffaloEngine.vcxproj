@@ -139,6 +139,7 @@
     <ClCompile Include="Src\Core\BuffInputManager.cpp" />
     <ClCompile Include="Src\Core\BuffJob.cpp" />
     <ClCompile Include="Src\Core\BuffJobManager.cpp" />
+    <ClCompile Include="Src\Rendering\BuffCamera.cpp" />
     <ClCompile Include="Src\Rendering\BuffConstantBuffer.cpp" />
     <ClCompile Include="Src\Rendering\BuffHardwareBuffer.cpp" />
     <ClCompile Include="Src\Rendering\BuffIndexBuffer.cpp" />

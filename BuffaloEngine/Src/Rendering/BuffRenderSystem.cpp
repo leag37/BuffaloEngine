@@ -76,8 +76,16 @@ namespace BuffaloEngine
 		_rotation.y = 0.0f;
 		_rotation.z = 0.0f;
 
+		// Create the projection matrix
+		float fieldOfView = (float)DirectX::XM_PI / 4.0f;
+		float screenAspect = 800.0f / 600.0f;
+
+		_camera = Camera(fieldOfView, screenAspect, 0.1f, 1000.0f);
+		_camera.LookAt(0.0f, 0.0f, 1.0f);
+		_camera.SetPosition(0.0f, 0.0f, -10.0f);
+
 		_eventListener = EventListener<RenderSystem>(this);
-		_eventListener.AddEventListener(InputEvent::TYPE, &RenderSystem::OnMove);
+		//_eventListener.AddEventListener(InputEvent::TYPE, &RenderSystem::OnMove);
 
 		return true;
 	}
@@ -126,55 +134,19 @@ namespace BuffaloEngine
 		Material* material = renderable->GetMaterial();
 		material->SetActive(_device);
 
-		// Create camera components
-		DirectX::XMVECTOR up, position, lookAt;
-		DirectX::XMMATRIX rotationMatrix, worldMatrix, viewMatrix, projectionMatrix;
-
-		// Setup the vector that points upwards.
-		up = DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
-		
-		// Setup the position of the camera in the world.
-		position = DirectX::XMLoadFloat3(&_position);// DirectX::XMVectorSet(0.0f, 0.0f, -10.0f, 0.0f);
-
-		// Setup where the camera is looking by default.
-		lookAt = DirectX::XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
-
-		// Create the rotation matrix from the yaw, pitch, and roll values.
-		rotationMatrix = DirectX::XMMatrixRotationRollPitchYaw(_rotation.x, _rotation.y, _rotation.z);
-
-		// Transform the lookAt and up vector by the rotation matrix so the view is correctly rotated at the origin.
-		lookAt = DirectX::XMVector3TransformCoord(lookAt, rotationMatrix);
-		up = DirectX::XMVector3TransformCoord(up, rotationMatrix);
-
-		// Translate the rotated camera position to the location of the viewer.
-		lookAt = DirectX::XMVectorAdd(position, lookAt);
-
-		// Finally create the view matrix from the three updated vectors.
-		viewMatrix = DirectX::XMMatrixLookAtLH(position, lookAt, up);
-
 		// Create the world matrix
-		worldMatrix = DirectX::XMMatrixIdentity();
+		DirectX::XMMATRIX worldMatrix = DirectX::XMMatrixIdentity();
 
-		// Create the projection matrix
-		float fieldOfView = (float)DirectX::XM_PI / 4.0f;
-		float screenAspect = 800.0f / 600.0f;
-		projectionMatrix = DirectX::XMMatrixPerspectiveFovLH(fieldOfView, screenAspect, 0.1f, 1000.0f);
 		
-		DirectX::XMMATRIX worldViewProj;
-		worldViewProj = DirectX::XMMatrixMultiply(worldMatrix, viewMatrix);
-		worldViewProj = DirectX::XMMatrixMultiply(worldViewProj, projectionMatrix);
-		worldViewProj = DirectX::XMMatrixTranspose(worldViewProj);
-
-		DirectX::XMMATRIX viewProjMatrix = DirectX::XMMatrixMultiply(viewMatrix, projectionMatrix);
-
-		DirectX::XMFLOAT4X4 mWorld, mViewProj;
-
+		
+		DirectX::XMMATRIX viewProjMatrix = _camera.GetViewProjMatrix();
+		
 		// Temp stuff
 		DirectX::XMMATRIX w = DirectX::XMMatrixTranspose(worldMatrix);
 		DirectX::XMMATRIX vp = DirectX::XMMatrixTranspose(viewProjMatrix);
-
 		DirectX::XMMATRIX wvp = DirectX::XMMatrixMultiply(w, vp);
 
+		DirectX::XMFLOAT4X4 mWorld, mViewProj;
 		DirectX::XMStoreFloat4x4(&mWorld, DirectX::XMMatrixTranspose(worldMatrix));
 		DirectX::XMStoreFloat4x4(&mViewProj, DirectX::XMMatrixTranspose(viewProjMatrix));
 

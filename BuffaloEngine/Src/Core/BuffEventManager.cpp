@@ -112,7 +112,7 @@ namespace BuffaloEngine
 		std::vector<IEventListener*>& listeners = _eventListeners[eventType];
 
 		// Search for the listener
-		for (std::vector<IEventListener*>::iterator itr = listeners.begin(); ++itr != listeners.end(); ++itr)
+		for (std::vector<IEventListener*>::iterator itr = listeners.begin(); itr != listeners.end(); ++itr)
 		{
 			// The listener is found, remove it and end
 			if (*itr == listener)
