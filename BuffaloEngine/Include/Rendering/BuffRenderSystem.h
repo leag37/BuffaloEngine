@@ -8,6 +8,7 @@
 #include "BuffRenderDeviceDriver.h"
 #include "Core\BuffEventListener.h"
 #include "Core\BuffInputEvent.h"
+#include "Rendering\BuffCamera.h"
 
 #include <vector>
 
@@ -175,6 +176,11 @@ namespace BuffaloEngine
 
 		DirectX::XMFLOAT3 _position;
 		DirectX::XMFLOAT3 _rotation;
+
+		/**
+		* Camera
+		*/
+		Camera _camera;
 	};
 
 	/** @} */

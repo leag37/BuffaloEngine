@@ -38,6 +38,9 @@
     <Filter Include="Core\Input">
       <UniqueIdentifier>{824cb3c3-90d5-4316-bd7a-b58e7e7af87c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering\Cameras">
+      <UniqueIdentifier>{4dcb5409-25cf-42a0-adb8-cd268b864d2d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Core\BuffApplication.h">
@@ -90,9 +93,6 @@
     </ClInclude>
     <ClInclude Include="Include\Entities\BuffEntity.h">
       <Filter>Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Rendering\BuffCamera.h">
-      <Filter>Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Include\Core\BuffComponent.h">
       <Filter>Core</Filter>
@@ -177,6 +177,9 @@
     </ClInclude>
     <ClInclude Include="Include\Core\BuffClassDirectory.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffCamera.h">
+      <Filter>Rendering\Cameras</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -278,6 +281,9 @@
     </ClCompile>
     <ClCompile Include="Src\Core\BuffIEventListener.cpp">
       <Filter>Core\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\BuffCamera.cpp">
+      <Filter>Rendering\Cameras</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

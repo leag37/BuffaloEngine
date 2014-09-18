@@ -150,7 +150,7 @@ namespace BuffaloEngine
 		{
 			fDIMouse->Acquire();
 		}
-		else
+		else if (mouseState.lX != 0 || mouseState.lY != 0)
 		{
 			// Get the x,y,z components as percentages floats
 			float x = static_cast<float>(mouseState.lX);
@@ -159,7 +159,7 @@ namespace BuffaloEngine
 			x *= 0.001f;
 			y *= 0.001f;
 
-			EventManager::GetSingletonPtr()->DispatchEvent(new InputEvent(IAT_TURN, y, x, 0));
+			EventManager::GetSingletonPtr()->DispatchEvent(new InputEvent(IAT_TURN, x, y, 0));
 			
 			//mouseState.rgbButtons
 			//DIMOFS_BUTTON0

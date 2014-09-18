@@ -81,6 +81,11 @@ bool EventListener<Type>::Dequeue()
 template <typename Type>
 void EventListener<Type>::AddEventListener(uint eventType, EventHandler handler)
 {
+	if (_pType == 0)
+	{
+		return;
+	}
+
 	_eventHandlers[eventType].push_back(handler);
 	EventManager::GetSingletonPtr()->RegisterListener(eventType, this);
 }
@@ -94,6 +99,11 @@ void EventListener<Type>::AddEventListener(uint eventType, EventHandler handler)
 template <typename Type>
 void EventListener<Type>::RemoveEventListener(uint eventType, EventHandler handler)
 {
+	if (_pType == 0)
+	{
+		return;
+	}
+
 	// See if there are any handlers currently available for this event type
 	std::unordered_map<uint, std::vector<EventHandler> >::iterator handlerListItr = _eventHandlers.find(eventType);
 	if (handlerListItr != _eventHandlers.end())
