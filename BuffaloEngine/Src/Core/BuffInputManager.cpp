@@ -4,6 +4,7 @@
 #include "Rendering\BuffRenderManager.h"
 #include "Rendering\BuffRenderWindow.h"
 
+#include "Core\BuffExitEvent.h"
 #include "Core\BuffInputEvent.h"
 #include "Core\BuffEventManager.h"
 
@@ -139,6 +140,10 @@ namespace BuffaloEngine
 			if (keyboardState[DIK_S] & 0x80)
 			{
 				EventManager::GetSingletonPtr()->DispatchEvent(new InputEvent(IAT_BACKWARD));
+			}
+			if (keyboardState[DIK_ESCAPE] & 0x80)
+			{
+				EventManager::GetSingletonPtr()->DispatchEvent(new ExitEvent());
 			}
 		}
 		

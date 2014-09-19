@@ -4,17 +4,13 @@
 #define __BUFFAPPLICATION_H__
 
 #include "Core\BuffPrerequisites.h"
+#include "Core\BuffEventListener.h"
 
 namespace BuffaloEngine
 {
 	/** \addtogroup Core
 	*	@{
 	*/
-
-	class EventManager;
-	class InputManager;
-	class JobManager;
-	class RenderManager;
 
 	/**
 	* The base for building applications. This class acts as the root for engine functionality.
@@ -74,6 +70,12 @@ namespace BuffaloEngine
 		*/
 		void Shutdown();
 
+		/**
+		 * Handle an exit event
+		 * @param evt The event to process
+		 */
+		void OnExitEvent(const Event* evt);
+
 	protected:
 		/**
 		* Job manager
@@ -94,6 +96,17 @@ namespace BuffaloEngine
 		 * Input manager
 		 */
 		InputManager* _inputManager;
+
+	private:
+		/**
+		 * Event listener
+		 */
+		EventListener<Application> _listener;
+
+		/**
+		 * Boolean flag representing that this application can run
+		 */
+		bool _canRun;
 	};
 
 	/** @} */

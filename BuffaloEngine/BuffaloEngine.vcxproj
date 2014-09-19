@@ -90,6 +90,7 @@
     <ClInclude Include="Include\Core\BuffEvent.h" />
     <ClInclude Include="Include\Core\BuffEventListener.h" />
     <ClInclude Include="Include\Core\BuffEventManager.h" />
+    <ClInclude Include="Include\Core\BuffExitEvent.h" />
     <ClInclude Include="Include\Core\BuffIEventListener.h" />
     <ClInclude Include="Include\Core\BuffInputEvent.h" />
     <ClInclude Include="Include\Core\BuffInputManager.h" />
@@ -134,6 +135,7 @@
     <ClCompile Include="Src\Core\BuffComponent.cpp" />
     <ClCompile Include="Src\Core\BuffEvent.cpp" />
     <ClCompile Include="Src\Core\BuffEventManager.cpp" />
+    <ClCompile Include="Src\Core\BuffExitEvent.cpp" />
     <ClCompile Include="Src\Core\BuffIEventListener.cpp" />
     <ClCompile Include="Src\Core\BuffInputEvent.cpp" />
     <ClCompile Include="Src\Core\BuffInputManager.cpp" />

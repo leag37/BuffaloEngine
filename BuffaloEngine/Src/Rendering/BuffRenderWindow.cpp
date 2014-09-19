@@ -2,6 +2,9 @@
 // Author: Gael Huber
 #include "Rendering\BuffRenderWindow.h"
 
+#include "Core\BuffEventManager.h"
+#include "Core\BuffExitEvent.h"
+
 namespace BuffaloEngine
 {
 	LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -125,6 +128,12 @@ namespace BuffaloEngine
 		// Process messages	
 		switch(msg)
 		{
+
+		// If Windows signals to exit the application, quit
+		case WM_QUIT:
+			EventManager::GetSingletonPtr()->DispatchEvent(new ExitEvent());
+			return 0;
+
 		// The window is destroyed, quit application
 		case WM_DESTROY:
 			// Send quit message to application

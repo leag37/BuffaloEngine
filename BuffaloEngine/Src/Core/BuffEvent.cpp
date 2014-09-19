@@ -4,6 +4,8 @@
 
 namespace BuffaloEngine
 {
+	uint Event::EventTypeCounter = 0;
+
 	/**
 	* Default constructor
 	*/
