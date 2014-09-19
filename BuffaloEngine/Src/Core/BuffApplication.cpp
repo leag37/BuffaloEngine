@@ -147,10 +147,7 @@ namespace BuffaloEngine
 		while(_canRun)
 		{
 			// Process any events
-			if (_listener.Peek())
-			{
-				_listener.Dequeue();
-			}
+			_listener.ProcessEvents();
 
 			const DWORD currentTime = timeGetTime();
 			const DWORD timeSinceLast = currentTime - lastTime;

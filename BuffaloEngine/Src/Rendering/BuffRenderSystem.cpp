@@ -104,10 +104,7 @@ namespace BuffaloEngine
 	void RenderSystem::BeginScene()
 	{
 		// Poll events
-		while (_eventListener.Peek()) 
-		{
-			_eventListener.Dequeue();
-		}
+		_eventListener.ProcessEvents();
 
 		// Clear color
 		float color[4] = {1.0f, 1.0f, 1.0f, 1.0f};

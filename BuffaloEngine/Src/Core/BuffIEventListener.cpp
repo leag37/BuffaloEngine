@@ -7,6 +7,7 @@ namespace BuffaloEngine
 	* Default constructor
 	*/
 	IEventListener::IEventListener()
+		: _externalEventsQueue(0)
 	{}
 
 	/**
@@ -20,6 +21,6 @@ namespace BuffaloEngine
 	*/
 	bool IEventListener::Peek()
 	{
-		return _eventQueue.size() > 0;
+		return _eventQueue[_externalEventsQueue].size() > 0;
 	}
 }

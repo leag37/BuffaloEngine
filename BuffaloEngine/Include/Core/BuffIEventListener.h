@@ -39,7 +39,7 @@ namespace BuffaloEngine
 		 * Dequeue an event and invoke it
 		 * @return Returns true if an event was dequeued, false otherwise
 		 */
-		virtual bool Dequeue() = 0;
+		//virtual bool Dequeue() = 0;
 
 		/**
 		* Peek at the events queue to determine if there is an event
@@ -48,9 +48,14 @@ namespace BuffaloEngine
 
 	protected:
 		/**
+		* The current pointer to the events queue being used
+		*/
+		uint _externalEventsQueue;
+
+		/**
 		 * The event queue
 		 */
-		std::queue<const Event*> _eventQueue;
+		std::queue<const Event*> _eventQueue[2];
 	};
 	
 	/** @} */
