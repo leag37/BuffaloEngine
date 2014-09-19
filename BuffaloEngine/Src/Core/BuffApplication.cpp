@@ -3,6 +3,7 @@
 #include "Core\BuffApplication.h"
 
 #include "Core\BuffEventManager.h"
+#include "Core\BuffExitEvent.h"
 #include "Core\BuffInputManager.h"
 #include "Core\BuffJobManager.h"
 #include "Rendering\BuffRenderManager.h"
@@ -15,7 +16,8 @@ namespace BuffaloEngine
 	* Default constructor
 	*/
 	Application::Application()
-		:	_jobManager(0),
+		:	_canRun(false),
+			_jobManager(0),
 			_renderManager(0),
 			_eventManager(0),
 			_inputManager(0)
@@ -28,7 +30,8 @@ namespace BuffaloEngine
 	*	const Application& The object to copy
 	*/
 	Application::Application(const Application& other)
-		:	_jobManager(other._jobManager),
+		:	_canRun(other._canRun),
+			_jobManager(other._jobManager),
 			_renderManager(other._renderManager),
 			_eventManager(other._eventManager),
 			_inputManager(other._inputManager)
@@ -77,6 +80,12 @@ namespace BuffaloEngine
 			return false;
 		}
 
+		/**
+		 * Hook in the event listener to listen for exit events
+		 */
+		_listener = EventListener<Application>(this);
+		_listener.AddEventListener(ExitEvent::TYPE, &Application::OnExitEvent);
+
 		// All systems are initialized, so create our scene
 		if(InitializeScene() == false)
 		{
@@ -99,6 +108,20 @@ namespace BuffaloEngine
 	}
 
 	/**
+	* Handle an exit event
+	* @param evt The event to process
+	*/
+	void Application::OnExitEvent(const Event* evt)
+	{
+		// Make sure the event type is valid
+		if (evt->GetEventType() == ExitEvent::TYPE)
+		{
+			// Set the application status to exit
+			_canRun = false;
+		}
+	}
+
+	/**
 	* Run the application
 	* @return
 	*	bool Return true if the application runs and terminates successfully
@@ -113,16 +136,22 @@ namespace BuffaloEngine
 		
 		// Main loop
 		MSG msg;
-		bool canRun = true;
-
+		_canRun = true;
+		
 		// Create various jobs for main render loops
 		//RenderUpdateJob renderUpdateJob;
 
 		DWORD lastTime = timeGetTime();
 		DWORD frames = 0;
 
-		while(canRun)
+		while(_canRun)
 		{
+			// Process any events
+			if (_listener.Peek())
+			{
+				_listener.Dequeue();
+			}
+
 			const DWORD currentTime = timeGetTime();
 			const DWORD timeSinceLast = currentTime - lastTime;
 			++frames;
@@ -143,12 +172,6 @@ namespace BuffaloEngine
 				DispatchMessage(&msg);
 			}
 
-			// If Windows signals to exit the application, quit
-			if(msg.message == WM_QUIT)
-			{
-				canRun = false;
-			}
-
 			// Pre-frame update
 			//PreFrameUpdate();
 
@@ -158,12 +181,12 @@ namespace BuffaloEngine
 			// Update rendering
 			if(_renderManager->Update() == false)
 			{
-				canRun = false;
+				_canRun = false;
 			}
 
 			if (_inputManager->Update() == false)
 			{
-				canRun = false;
+				_canRun = false;
 			}
 		}
 

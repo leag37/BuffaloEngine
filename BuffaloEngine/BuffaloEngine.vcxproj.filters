@@ -181,6 +181,9 @@
     <ClInclude Include="Include\Rendering\BuffCamera.h">
       <Filter>Rendering\Cameras</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Core\BuffExitEvent.h">
+      <Filter>Core\Events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Core\BuffApplication.cpp">
@@ -284,6 +287,9 @@
     </ClCompile>
     <ClCompile Include="Src\Rendering\BuffCamera.cpp">
       <Filter>Rendering\Cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\BuffExitEvent.cpp">
+      <Filter>Core\Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

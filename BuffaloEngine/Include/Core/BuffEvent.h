@@ -35,15 +35,16 @@ namespace BuffaloEngine
 		 * @return The type associated with this event
 		 */
 		virtual uint GetEventType() const = 0;
+		
+		// Use this to register event types with the engine.
+		// NOTE: This line needs to be added after every class definition like so:
+		// class MyEvent : public Event
+		// { };
+		// REGISTER_EVENT_TYPE(MyEvent)
+		static uint EventTypeCounter;
 	};
 
-	// Use this to register event types with the engine.
-	// NOTE: This line needs to be added after every class definition like so:
-	// class MyEvent : public Event
-	// { };
-	// REGISTER_EVENT_TYPE(MyEvent)
-	static uint EventTypeCounter = 0;
-	#define REGISTER_EVENT_TYPE(x) uint x::TYPE = EventTypeCounter++;
+	#define REGISTER_EVENT_TYPE(x) uint x::TYPE = Event::EventTypeCounter++;
 
 	/** @} */
 
