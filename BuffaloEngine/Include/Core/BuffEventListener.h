@@ -56,7 +56,12 @@ namespace BuffaloEngine
 		* Dequeue an event and invoke it
 		* @return Returns true if an event was dequeued, false otherwise
 		*/
-		bool Dequeue();
+		//bool Dequeue();
+
+		/**
+		 * Swap the events queue and process all events
+		 */
+		void ProcessEvents();
 
 		/**
 		 * Add an event listener

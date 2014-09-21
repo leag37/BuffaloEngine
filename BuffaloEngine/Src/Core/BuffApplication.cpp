@@ -6,6 +6,7 @@
 #include "Core\BuffExitEvent.h"
 #include "Core\BuffInputManager.h"
 #include "Core\BuffJobManager.h"
+#include "Core\BuffUpdaterJob.h"
 #include "Rendering\BuffRenderManager.h"
 
 #include <iostream>
@@ -139,7 +140,8 @@ namespace BuffaloEngine
 		_canRun = true;
 		
 		// Create various jobs for main render loops
-		//RenderUpdateJob renderUpdateJob;
+		UpdaterJob<RenderManager> renderUpdateJob(_renderManager);
+		UpdaterJob<InputManager> inputUpdateJob(_inputManager);
 
 		DWORD lastTime = timeGetTime();
 		DWORD frames = 0;
@@ -147,10 +149,7 @@ namespace BuffaloEngine
 		while(_canRun)
 		{
 			// Process any events
-			if (_listener.Peek())
-			{
-				_listener.Dequeue();
-			}
+			_listener.ProcessEvents();
 
 			const DWORD currentTime = timeGetTime();
 			const DWORD timeSinceLast = currentTime - lastTime;
@@ -179,15 +178,11 @@ namespace BuffaloEngine
 			Update();
 
 			// Update rendering
-			if(_renderManager->Update() == false)
-			{
-				_canRun = false;
-			}
+			renderUpdateJob.Wait();
+			_jobManager->AddJob(&renderUpdateJob);
 
-			if (_inputManager->Update() == false)
-			{
-				_canRun = false;
-			}
+			inputUpdateJob.Wait();
+			_jobManager->AddJob(&inputUpdateJob);
 		}
 
 		// Shutdown the system

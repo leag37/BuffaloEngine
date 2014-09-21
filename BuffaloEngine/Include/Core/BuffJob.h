@@ -16,7 +16,8 @@ namespace BuffaloEngine
 	*/
 	enum JobStatus
 	{
-		JOB_STATUS_PENDING = 0,
+		JOB_STATUS_UNSTARTED = 0,
+		JOB_STATUS_PENDING,
 		JOB_STATUS_PROCESSING,
 		JOB_STATUS_DONE,
 		JOB_STATUS_FAILED
@@ -37,6 +38,11 @@ namespace BuffaloEngine
 		* Destructor
 		*/
 		virtual ~Job();
+
+		/**
+		 * Preprocess a job, this typically involves setting the status from UNSTARTED to PENDING
+		 */
+		void Preprocess();
 
 		/**
 		* Perform the specified job

@@ -236,10 +236,7 @@ namespace BuffaloEngine
 	DirectX::XMMATRIX Camera::GetViewProjMatrix()
 	{
 		// Poll events
-		while (_eventListener.Peek())
-		{
-			_eventListener.Dequeue();
-		}
+		_eventListener.ProcessEvents();
 
 		/*// Create the rotation matrix from the yaw, pitch, and roll values.
 		DirectX::XMMATRIX rotationMatrix = DirectX::XMMatrixRotationRollPitchYaw(_orientation.x, _orientation.y, _orientation.z);

@@ -100,6 +100,7 @@
     <ClInclude Include="Include\Core\BuffPrerequisites.h" />
     <ClInclude Include="Include\Core\BuffSharedPtr.h" />
     <ClInclude Include="Include\Core\BuffSingleton.h" />
+    <ClInclude Include="Include\Core\BuffUpdaterJob.h" />
     <ClInclude Include="Include\Core\BuffWindowsEventHandler.h" />
     <ClInclude Include="Include\Entities\BuffEntity.h" />
     <ClInclude Include="Include\Rendering\BuffCamera.h" />
@@ -172,6 +173,7 @@
     <None Include="Include\Core\BuffEventListener.inl" />
     <None Include="Include\Core\BuffSharedPtr.inl" />
     <None Include="Include\Core\BuffSingleton.inl" />
+    <None Include="Include\Core\BuffUpdaterJob.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

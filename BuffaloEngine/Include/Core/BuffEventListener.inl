@@ -6,7 +6,8 @@
 */
 template <typename Type>
 EventListener<Type>::EventListener()
-: _pType(0)
+	:	IEventListener(),
+		_pType(0)
 {
 
 }
@@ -17,7 +18,8 @@ EventListener<Type>::EventListener()
 */
 template <typename Type>
 EventListener<Type>::EventListener(Type* pType)
-: _pType(pType)
+	:	IEventListener(),
+		_pType(pType)
 {
 
 }
@@ -39,14 +41,14 @@ template <typename Type>
 void EventListener<Type>::Enqueue(const Event* evt)
 {
 	// Add the event to the event queue
-	_eventQueue.push(evt);
+	_eventQueue[_externalEventsQueue].push(evt);
 }
 
 /**
 * Dequeue an event and invoke it
 * @return Returns true if an event was dequeued, false otherwise
 */
-template <typename Type>
+/*template <typename Type>
 bool EventListener<Type>::Dequeue()
 {
 	// Get the event
@@ -71,6 +73,42 @@ bool EventListener<Type>::Dequeue()
 		}
 	}
 	return true;
+}*/
+
+/**
+* Swap the events queue and process all events
+*/
+template <typename Type>
+void EventListener<Type>::ProcessEvents()
+{
+	// Swap the event queue
+	uint processQueue = InterlockedExchange(&_externalEventsQueue, (~_externalEventsQueue & 1));
+
+	// Get the event
+	std::queue<const Event*>& eventQueue = _eventQueue[processQueue];
+	while (eventQueue.size() > 0)
+	{
+		const Event* evt = eventQueue.front();
+		if (evt)
+		{
+			// Remove this event from the queue
+			eventQueue.pop();
+
+			// Find the list of registered listeners for this event
+			std::unordered_map<uint, std::vector<EventHandler> >::const_iterator handlerListItr = _eventHandlers.find(evt->GetEventType());
+
+			//If found, iterate through the list of handlers and invoke
+			if (handlerListItr != _eventHandlers.end())
+			{
+				const std::vector<EventHandler>& handlerList = (*handlerListItr).second;
+				for (std::vector<EventHandler>::const_iterator handlerItr = handlerList.begin(); handlerItr != handlerList.end(); ++handlerItr)
+				{
+					EventHandler handler = (*handlerItr);
+					(_pType->*(handler))(evt);
+				}
+			}
+		}
+	}
 }
 
 /**

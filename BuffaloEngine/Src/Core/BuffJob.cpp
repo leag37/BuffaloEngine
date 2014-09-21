@@ -9,7 +9,7 @@ namespace BuffaloEngine
 	* Default constructor
 	*/
 	Job::Job()
-		:	_jobStatus(JOB_STATUS_PENDING)
+		:	_jobStatus(JOB_STATUS_UNSTARTED)
 	{
 	}
 
@@ -18,6 +18,14 @@ namespace BuffaloEngine
 	*/
 	Job::~Job()
 	{
+	}
+
+	/**
+	* Preprocess a job, this typically involves setting the status from UNSTARTED to PENDING
+	*/
+	void Job::Preprocess()
+	{
+		_jobStatus = JOB_STATUS_PENDING;
 	}
 
 	/**
@@ -53,7 +61,7 @@ namespace BuffaloEngine
 		JobManager* jobManager = JobManager::GetSingletonPtr();
 		
 		// While the job is not finished or failed, perform another job from the queue
-		while(_jobStatus != JOB_STATUS_DONE && _jobStatus != JOB_STATUS_FAILED)
+		while(_jobStatus != JOB_STATUS_UNSTARTED && _jobStatus != JOB_STATUS_DONE && _jobStatus != JOB_STATUS_FAILED)
 		{
 			Job* job = 0;
 			if(jobManager->GetJob(&job) == true)
