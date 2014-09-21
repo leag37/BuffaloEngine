@@ -44,6 +44,9 @@
     <Filter Include="Core\Jobs">
       <UniqueIdentifier>{4cb221e1-d4ab-484c-b0e4-5483f22a2444}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Threading">
+      <UniqueIdentifier>{b83e3e70-929b-428a-97e1-ef7bdb1575a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Core\BuffApplication.h">
@@ -190,6 +193,9 @@
     <ClInclude Include="Include\Core\BuffUpdaterJob.h">
       <Filter>Core\Jobs</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Core\BuffScopedLock.h">
+      <Filter>Core\Threading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Core\BuffApplication.cpp">
@@ -296,6 +302,9 @@
     </ClCompile>
     <ClCompile Include="Src\Core\BuffJobManager.cpp">
       <Filter>Core\Jobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\BuffScopedLock.cpp">
+      <Filter>Core\Threading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

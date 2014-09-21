@@ -98,6 +98,7 @@
     <ClInclude Include="Include\Core\BuffJobManager.h" />
     <ClInclude Include="Include\Core\BuffMemory.h" />
     <ClInclude Include="Include\Core\BuffPrerequisites.h" />
+    <ClInclude Include="Include\Core\BuffScopedLock.h" />
     <ClInclude Include="Include\Core\BuffSharedPtr.h" />
     <ClInclude Include="Include\Core\BuffSingleton.h" />
     <ClInclude Include="Include\Core\BuffUpdaterJob.h" />
@@ -142,6 +143,7 @@
     <ClCompile Include="Src\Core\BuffInputManager.cpp" />
     <ClCompile Include="Src\Core\BuffJob.cpp" />
     <ClCompile Include="Src\Core\BuffJobManager.cpp" />
+    <ClCompile Include="Src\Core\BuffScopedLock.cpp" />
     <ClCompile Include="Src\Rendering\BuffCamera.cpp" />
     <ClCompile Include="Src\Rendering\BuffConstantBuffer.cpp" />
     <ClCompile Include="Src\Rendering\BuffHardwareBuffer.cpp" />

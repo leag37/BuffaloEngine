@@ -2,9 +2,15 @@
 // Author: Gael Huber
 #include "Core\BuffJobManager.h"
 #include "Core\BuffJob.h"
+#include "Core\BuffScopedLock.h"
 
 namespace BuffaloEngine
 {
+	/**
+	 * Declaration for ThreadWorker method
+	 */
+	DWORD WINAPI WorkerThread(LPVOID lpParam);
+
 	/* Default constructor
 	*/
 	JobManager::JobManager()
@@ -25,7 +31,25 @@ namespace BuffaloEngine
 	*/
 	bool JobManager::Initialize()
 	{
-		// TODO
+		// Create the critical section
+		InitializeCriticalSection(&_criticalSection);
+
+		// Set the manager to running
+		_isRunning = true;
+
+		// Create a list of threads (4 for now)
+		for (int i = 0; i < 1; ++i)
+		{
+			_threads.push_back(
+				CreateThread(
+				NULL,			// default security attributes
+				0,				// default stack size
+				WorkerThread,	// thread function
+				NULL,			// arguments to pass to thread
+				0,				// default creation flags
+				0				// returns thread identifier
+				));
+		}
 		return true;
 	}
 
@@ -34,6 +58,17 @@ namespace BuffaloEngine
 	*/
 	void JobManager::Shutdown()
 	{
+		// Set the job manager to ended
+		_isRunning = false;
+
+		// Wait for each thread to exit
+		for (uint i = 0; i < _threads.size(); ++i)
+		{
+			WaitForSingleObject(_threads[i], INFINITE);
+		}
+
+		// Delete the critical section
+		DeleteCriticalSection(&_criticalSection);
 	}
 
 	/**
@@ -64,7 +99,13 @@ namespace BuffaloEngine
 	bool JobManager::AddJob(Job* job)
 	{
 		job->Preprocess();
+
+		// Lock the critical section
+		ScopedLock scopedLock(&_criticalSection);
+
+		// Add the job to the queue
 		_jobQueue.push_back(job);
+		
 		return true;
 	}
 
@@ -80,10 +121,20 @@ namespace BuffaloEngine
 		// If there is a job, pop it from the list
 		if(_jobQueue.size() > 0)
 		{
-			// Pop a job from the queue
-			std::vector<Job*>::iterator jobItr = _jobQueue.begin();
-			*job = *jobItr;
-			_jobQueue.erase(jobItr);
+			// Lock the critical section
+			ScopedLock scopedLock(&_criticalSection);
+
+			if (_jobQueue.size() > 0)
+			{
+				// Pop a job from the queue
+				std::vector<Job*>::iterator jobItr = _jobQueue.begin();
+				*job = *jobItr;
+				_jobQueue.erase(jobItr);
+			}
+			else
+			{
+				return false;
+			}
 		}
 		else
 		{
@@ -92,5 +143,39 @@ namespace BuffaloEngine
 
 		return true;
 	}
+
+	/**
+	* @return Returns the current state of the job manager
+	*/
+	bool JobManager::IsRunning() const
+	{
+		return _isRunning;
+	}
+
+	/**
+	* Declaration for ThreadWorker method
+	*/
+	DWORD WINAPI WorkerThread(LPVOID lpParam)
+	{
+		// Get a pointer to the job manager
+		JobManager* jobManager = JobManager::GetSingletonPtr();
+		Job* job = 0;
+
+		while (jobManager->IsRunning())
+		{
+			// Get a job from the queue
+			if (jobManager->GetJob(&job))
+			{
+				job->Run();
+			}
+			else
+			{
+				Sleep(10);
+			}
+		}
+
+		return 0;
+	}
+
 
 }	// Namespace

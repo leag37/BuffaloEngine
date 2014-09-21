@@ -75,11 +75,31 @@ namespace BuffaloEngine
 		*/
 		bool GetJob(Job** job);
 
+		/**
+		 * @return Returns the current state of the job manager
+		 */
+		bool IsRunning() const;
+
 	private:
 		/**
 		* The job queue
 		*/
 		std::vector<Job*> _jobQueue;
+
+		/**
+		 * List of thread handles
+		 */
+		std::vector<HANDLE> _threads;
+
+		/**
+		 * Critical section
+		 */
+		CRITICAL_SECTION _criticalSection;
+
+		/**
+		 * Tells whether the manager is running or not
+		 */
+		bool _isRunning;
 	};
 
 	
