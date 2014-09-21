@@ -5,14 +5,22 @@
 
 namespace BuffaloEngine
 {
+	// Standard classes
+	class Camera;
 	class Event;
 	class EventManager;
 	class IEventListener;
 	class InputManager;
+	class Job;
 	class JobManager;
 	class RenderComponent;
 	class RenderManager;
 	class RenderSystem;
+	class ScopedLock;
+
+	// Template classes
+	template <typename Updateable>
+	class UpdaterJob;
 }
 
 #endif // __BUFFCLASSDIRECTORY_H__
