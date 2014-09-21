@@ -63,6 +63,7 @@ namespace BuffaloEngine
 	*/
 	bool JobManager::AddJob(Job* job)
 	{
+		job->Preprocess();
 		_jobQueue.push_back(job);
 		return true;
 	}

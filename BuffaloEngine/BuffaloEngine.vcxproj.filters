@@ -41,6 +41,9 @@
     <Filter Include="Rendering\Cameras">
       <UniqueIdentifier>{4dcb5409-25cf-42a0-adb8-cd268b864d2d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Jobs">
+      <UniqueIdentifier>{4cb221e1-d4ab-484c-b0e4-5483f22a2444}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Core\BuffApplication.h">
@@ -63,12 +66,6 @@
     </ClInclude>
     <ClInclude Include="Include\Rendering\BuffRenderManager.h">
       <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Core\BuffJobManager.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\Core\BuffJob.h">
-      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Include\Core\BuffWindowsEventHandler.h">
       <Filter>Core</Filter>
@@ -184,15 +181,18 @@
     <ClInclude Include="Include\Core\BuffExitEvent.h">
       <Filter>Core\Events</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Core\BuffJob.h">
+      <Filter>Core\Jobs</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\BuffJobManager.h">
+      <Filter>Core\Jobs</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Core\BuffUpdaterJob.h">
+      <Filter>Core\Jobs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Core\BuffApplication.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Core\BuffJob.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Core\BuffJobManager.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Src\Rendering\BuffRenderWindow.cpp">
@@ -291,6 +291,12 @@
     <ClCompile Include="Src\Core\BuffExitEvent.cpp">
       <Filter>Core\Events</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Core\BuffJob.cpp">
+      <Filter>Core\Jobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\BuffJobManager.cpp">
+      <Filter>Core\Jobs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Include\Core\BuffAllocatedClass.inl">
@@ -304,6 +310,9 @@
     </None>
     <None Include="Include\Core\BuffEventListener.inl">
       <Filter>Core\Events</Filter>
+    </None>
+    <None Include="Include\Core\BuffUpdaterJob.inl">
+      <Filter>Core\Jobs</Filter>
     </None>
   </ItemGroup>
 </Project>
