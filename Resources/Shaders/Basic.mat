@@ -19,6 +19,7 @@ layout
 cbFrame
 {
 	Matrix gViewProj
+	Light gLight
 }
 
 # The constant buffer per object

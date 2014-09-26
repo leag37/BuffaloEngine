@@ -2,6 +2,8 @@
 // Author: Gael Huber
 #include "Rendering\BuffShaderParameter.h"
 
+#include "Rendering\BuffLight.h"
+
 namespace BuffaloEngine
 {
 	/**
@@ -155,21 +157,25 @@ namespace BuffaloEngine
 		{
 			return SHADER_PARAMETER_TYPE_FLOAT;
 		}
-		if (name == "Float2")
+		else if (name == "Float2")
 		{
 			return SHADER_PARAMETER_TYPE_FLOAT2;
 		}
-		if (name == "Float3")
+		else if (name == "Float3")
 		{
 			return SHADER_PARAMETER_TYPE_FLOAT3;
 		}
-		if (name == "Float4")
+		else if (name == "Float4")
 		{
 			return SHADER_PARAMETER_TYPE_FLOAT4;
 		}
-		if (name == "Matrix")
+		else if (name == "Matrix")
 		{
 			return SHADER_PARAMETER_TYPE_MATRIX;
+		}
+		else if (name == "Light")
+		{
+			return SHADER_PARAMETER_TYPE_LIGHT;
 		}
 
 		return SHADER_PARAMETER_TYPE_UNKNOWN;
@@ -197,6 +203,9 @@ namespace BuffaloEngine
 
 		case SHADER_PARAMETER_TYPE_FLOAT4:
 			return sizeof(float) * 4;
+
+		case SHADER_PARAMETER_TYPE_LIGHT:
+			return sizeof(Light);
 
 		case SHADER_PARAMETER_TYPE_MATRIX:
 			return sizeof(float) * 16;

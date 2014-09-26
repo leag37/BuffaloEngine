@@ -13,6 +13,7 @@ namespace BuffaloEngine
 	class InputManager;
 	class Job;
 	class JobManager;
+	class Light;
 	class RenderComponent;
 	class RenderManager;
 	class RenderSystem;

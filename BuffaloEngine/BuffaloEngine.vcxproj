@@ -111,6 +111,7 @@
     <ClInclude Include="Include\Rendering\BuffIndexBuffer.h" />
     <ClInclude Include="Include\Rendering\BuffInputLayout.h" />
     <ClInclude Include="Include\Rendering\BuffInputLayoutParameter.h" />
+    <ClInclude Include="Include\Rendering\BuffLight.h" />
     <ClInclude Include="Include\Rendering\BuffMaterial.h" />
     <ClInclude Include="Include\Rendering\BuffMesh.h" />
     <ClInclude Include="Include\Rendering\BuffMeshSerializer.h" />

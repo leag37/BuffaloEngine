@@ -15,6 +15,9 @@ cbuffer PerObject
 Texture2D shaderTexture;
 SamplerState shaderSampler;
 
+// G-Buffer
+
+
 struct VertexInput
 {
 	float3 position : POSITION;

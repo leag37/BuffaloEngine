@@ -47,6 +47,9 @@
     <Filter Include="Core\Threading">
       <UniqueIdentifier>{b83e3e70-929b-428a-97e1-ef7bdb1575a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering\Lighting">
+      <UniqueIdentifier>{1fa843e4-af79-4b9f-b8ca-a1e320a894fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Core\BuffApplication.h">
@@ -195,6 +198,9 @@
     </ClInclude>
     <ClInclude Include="Include\Core\BuffScopedLock.h">
       <Filter>Core\Threading</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Rendering\BuffLight.h">
+      <Filter>Rendering\Lighting</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
